@@ -4,9 +4,9 @@
 An AI-driven finance tracking web app that helps users monitor expenses, manage budgets, and discover cost-effective alternatives using AI recommendations. This project was built as part of the CrimsonCode Hackathon, aligning with the theme "Art in Innovation" by incorporating data visualization as digital art to represent spending habits.
 
 
-## 📌 Functional & Non-Functional Requirements for Hackanomics
+##  Functional & Non-Functional Requirements for Hackanomics
 
-### 🛠️ Functional Requirements
+### Functional Requirements
 
 | **ID**   | **Requirement**                      | **Description** |
 |----------|--------------------------------------|---------------|
@@ -19,9 +19,8 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **FR-7** | Predictable Infrastructure          | The app scales efficiently to accommodate more users. |
 | **FR-8** | Discounts for Extra Savings         | If a user exceeds their weekly savings goal, they receive discounts in the marketplace. |
 
----
 
-### ⚙️ Non-Functional Requirements
+### Non-Functional Requirements
 
 | **ID**   | **Requirement**                   | **Description** |
 |----------|-----------------------------------|---------------|
@@ -33,6 +32,18 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **NFR-6** | User Experience                 | The interface should be intuitive and engaging, keeping users motivated to save. |
 | **NFR-7** | AI Fairness & Transparency      | AI recommendations should be clear, explainable, and free of bias. |
 
----
+## Updated Tech Stack for Hackanomics
 
-This document ensures **clear development goals** while aligning with **Hackanomics' mission** to make saving interactive and fun! 🚀🔥
+### Core Technologies
+
+| **Category**       | **Technology** | **Why We Chose It?** |
+|--------------------|---------------|----------------------|
+| **Frontend**       | **React (TypeScript)** | Fast, scalable UI with interactive gamification. |
+| **Styling**        | **Tailwind CSS** | Clean and modern UI for finance tracking. |
+| **Backend**        | **Node.js, Express.js** | Handles user transactions & AI processing. |
+| **Database**       | **MongoDB Atlas** | Cloud-hosted, flexible NoSQL for finance tracking. |
+| **Authentication** | **Auth0** | Secure login & seamless authentication with social login options. |
+| **Caching**        | **Redis** | Speeds up AI-generated recommendations and optimizes performance. |
+| **AI & ML**        | **Cloudflare Workers AI + OpenAI API / Google Gemini** | Generates personalized savings plans and AI-driven budget advice. |
+| **Hosting & Domain** | **Vercel + .Tech domain** | Fast deployment with a branded domain name. |
+| **Security & Performance** | **Cloudflare CDN** | Enhances app speed, protects API requests, and prevents bot abuse. |
