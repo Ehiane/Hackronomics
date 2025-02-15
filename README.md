@@ -36,14 +36,13 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 
 ### Core Technologies
 
-| **Category**       | **Technology** | **Why We Chose It?** |
-|--------------------|---------------|----------------------|
-| **Frontend**       | **React (TypeScript)** | Fast, scalable UI with interactive gamification. |
-| **Styling**        | **Tailwind CSS** | Clean and modern UI for finance tracking. |
-| **Backend**        | **Node.js, Express.js** | Handles user transactions & AI processing. |
-| **Database**       | **MongoDB Atlas** | Cloud-hosted, flexible NoSQL for finance tracking. |
-| **Authentication** | **Auth0** | Secure login & seamless authentication with social login options. |
-| **Caching**        | **Redis** | Speeds up AI-generated recommendations and optimizes performance. |
-| **AI & ML**        | **Cloudflare Workers AI + OpenAI API / Google Gemini** | Generates personalized savings plans and AI-driven budget advice. |
-| **Hosting & Domain** | **Vercel + .Tech domain** | Fast deployment with a branded domain name. |
-| **Security & Performance** | **Cloudflare CDN** | Enhances app speed, protects API requests, and prevents bot abuse. |
+| **Category**          | **Technologies & Tools** | **Assigned To** |
+|----------------------|-------------------------|----------------|
+| **AI & Machine Learning** | - **Cloudflare** (AI/ML services)  <br> - **OpenAI API** (AI-powered budget insights)  <br> - **Google Maps API** (Location-based spending suggestions) | [**Ehiane**](https://github.com/Ehiane) & [**Will**](https://github.com/kiwisurgen) |
+| **Frontend (FE)** | - **React (TypeScript)**  <br> - **CSS / Bootstrap** | [**Osaze**](https://github.com/Ogieriakhi17) |
+| **Backend (BE)** | - **Node.js, Express.js** (API & server logic) | [**Ehiane**](https://github.com/ehiane) & [**Will**](https://github.com/kiwisurgen) |
+| **Database & Authentication** | - **MongoDB** (Transaction & user data) <br> - **Auth0** (User authentication & security) | [**Bruno**](https://github.com/BruSalSprouts) |
+| **Security** | - **Cloudflare CDN** (DDoS protection & performance) | [**All of Us**](https://github.com/team-hackanomics) |
+| **Hosting & Deployment** | - **Vercel + Tech domain** (Frontend hosting) | [**Osaze**](https://github.com/Ogieriakhi17) |
+
+
