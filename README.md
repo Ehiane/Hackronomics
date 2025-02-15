@@ -46,3 +46,121 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **Hosting & Deployment** | - **Vercel + Tech domain** (Frontend hosting) | [**Osaze**](https://github.com/Ogieriakhi17) |
 
 
+# Database Schema - Hackanomics 💰🎨
+
+The following is the **database schema** for **Hackanomics**, built using **MongoDB Atlas**.
+
+## **User Collection**
+| **Field**          | **Type**  | **Description** |
+|--------------------|----------|---------------|
+| `userID`          | String   | Unique identifier for the user |
+| `name`            | String   | User's full name |
+| `email`           | String   | User's email address |
+| `DOB`             | Date     | User's date of birth |
+| `primaryLocation` | String   | User's primary location or address |
+| `zipcode`         | String   | User's ZIP code |
+| `savingsPlan`     | Object   | User's active savings plan (embedded document) |
+| `avatar`         | Object   | Stores the avatar’s customization details |
+| `friendsList`     | Array    | List of user IDs representing friends |
+
+---
+
+## **Transactions Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `transactionID`  | String   | Unique transaction identifier |
+| `userID`         | String   | ID of the user making the transaction |
+| `category`       | ENUM     | Type of transaction (Food, Transport, Subscription, etc.) |
+| `amountSpent`    | Number   | Amount spent on the transaction |
+| `vendorDetails`  | Object   | Vendor name and address |
+
+---
+
+## **Avatar Collection**
+| **Field**          | **Type**  | **Description** |
+|--------------------|----------|---------------|
+| `userID`          | String   | ID of the user who owns the avatar |
+| `baseBody`        | String   | Default body shape/type |
+| `clothingItems`   | Array    | List of clothing/accessories equipped |
+| `face`           | String   | Custom face type |
+
+---
+
+## **Store Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `itemID`         | String   | Unique identifier for the store item |
+| `category`       | String   | Type of item (Clothing, Accessories, etc.) |
+| `imageURL`       | String   | URL to the item's image |
+| `price`          | Number   | Price in Save Points |
+
+---
+
+## **Savings Plan Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `savingsPlanID`  | String   | Unique identifier for the savings plan |
+| `userID`         | String   | ID of the user associated with the plan |
+| `balance`        | Number   | Total saved amount |
+| `transactions`   | Array    | List of related transaction IDs |
+| `goalAmount`     | Number   | Target amount for the savings goal |
+| `duration`       | String   | Length of time for savings (e.g., weekly, monthly) |
+| `progress`       | Number   | Current progress toward the goal (%) |
+| `remainingAmount` | Number   | Amount left to reach the goal |
+
+---
+
+## **Rewards Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `rewardID`       | String   | Unique identifier for the reward |
+| `userID`         | String   | ID of the user earning the reward |
+| `rewardName`     | String   | Name of the reward (e.g., "10% Off Food") |
+| `rewardType`     | ENUM     | Type of reward (Discount, Bonus Points, Special Item) |
+| `redeemed`       | Boolean  | Whether the reward has been claimed |
+
+---
+
+## **Discounts Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `discountID`     | String   | Unique identifier for the discount |
+| `userID`         | String   | ID of the user who earned the discount |
+| `discountPercentage` | Number | Discount percentage applied to the store |
+| `expirationDate`  | Date     | Expiration date for the discount |
+| `redeemed`       | Boolean  | Whether the discount has been used |
+
+---
+
+## **Notifications Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `notificationID` | String   | Unique identifier for the notification |
+| `userID`         | String   | ID of the user receiving the notification |
+| `message`        | String   | Notification content |
+| `readStatus`     | Boolean  | Whether the user has read the notification |
+| `timestamp`      | Date     | Time when the notification was sent |
+
+---
+
+## **Leaderboard Collection**
+| **Field**         | **Type**  | **Description** |
+|-------------------|----------|---------------|
+| `leaderboardID`  | String   | Unique identifier for the leaderboard entry |
+| `userID`         | String   | ID of the user on the leaderboard |
+| `totalSavings`   | Number   | Total amount saved by the user |
+| `rank`           | Number   | Position in the leaderboard |
+
+---
+
+## **Summary**
+- The **User Collection** stores **personal details, savings plans, and avatar data**.
+- **Transactions track spending**, categorized by type and vendor details.
+- **The Store Collection enables customization** by purchasing items with Save Points.
+- **The Savings Plan Collection manages user goals** and their progress.
+- **Rewards and Discounts Collections** allow users to earn and redeem perks.
+- **Notifications provide real-time updates**, and the **Leaderboard fosters competition**.
+
+
+
+
