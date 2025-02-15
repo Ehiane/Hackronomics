@@ -32,7 +32,7 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **NFR-6** | User Experience                 | The interface should be intuitive and engaging, keeping users motivated to save. |
 | **NFR-7** | AI Fairness & Transparency      | AI recommendations should be clear, explainable, and free of bias. |
 
-## Updated Tech Stack for Hackronomics
+## Tech Stack for Hackronomics
 
 ### Core Technologies
 
