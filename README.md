@@ -1,10 +1,10 @@
-<img src="https://github.com/user-attachments/assets/b2730215-cc6c-4f4a-a7ee-fee730a6e950" alt="Hackanomics Logo" width="300" height="300">
+<img src="https://github.com/user-attachments/assets/b2730215-cc6c-4f4a-a7ee-fee730a6e950" alt="Hackronomics Logo" width="300" height="300">
 
 # Hackronomics
 An AI-driven finance tracking web app that helps users monitor expenses, manage budgets, and discover cost-effective alternatives using AI recommendations. This project was built as part of the CrimsonCode Hackathon, aligning with the theme "Art in Innovation" by incorporating data visualization as digital art to represent spending habits.
 
 
-##  Functional & Non-Functional Requirements for Hackanomics
+##  Functional & Non-Functional Requirements for Hackronomics
 
 ### Functional Requirements
 
@@ -32,7 +32,7 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **NFR-6** | User Experience                 | The interface should be intuitive and engaging, keeping users motivated to save. |
 | **NFR-7** | AI Fairness & Transparency      | AI recommendations should be clear, explainable, and free of bias. |
 
-## Updated Tech Stack for Hackanomics
+## Updated Tech Stack for Hackronomics
 
 ### Core Technologies
 
