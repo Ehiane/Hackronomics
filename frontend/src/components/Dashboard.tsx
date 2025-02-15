@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Dashboard = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen flex flex-col">
       {/* Header */}
       <header className="bg-blue-600 text-white py-4 px-8 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Hackronomics</h1>
@@ -13,16 +13,16 @@ const Dashboard = () => {
       </header>
 
       {/* Dashboard Content */}
-      <main className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <main className="p-6 flex-1 flex">
         {/* Sidebar with Avatar */}
-        <div className="bg-white shadow-md rounded-2xl p-4 flex flex-col items-center">
+        <div className="w-64 bg-white shadow-md rounded-2xl p-4 flex flex-col items-center mr-6">
           <div className="w-24 h-24 bg-gray-300 rounded-full mb-4"></div>
           <h2 className="text-xl font-semibold">User Name</h2>
           <p className="text-gray-500">Placeholder Avatar</p>
         </div>
 
         {/* Main Dashboard Cards */}
-        <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Savings Summary Card */}
           <motion.div whileHover={{ scale: 1.05 }}>
             <Card className="bg-white shadow-md rounded-2xl">
