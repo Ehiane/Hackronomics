@@ -42,7 +42,7 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **Frontend (FE)** | - **React (TypeScript)**  <br> - **CSS / Bootstrap** | [**Osaze**](https://github.com/Ogieriakhi17) |
 | **Backend (BE)** | - **Node.js, Express.js** (API & server logic) | [**Ehiane**](https://github.com/ehiane) & [**Will**](https://github.com/kiwisurgen) |
 | **Database & Authentication** | - **MongoDB** (Transaction & user data) <br> - **Auth0** (User authentication & security) | [**Bruno**](https://github.com/BruSalSprouts) |
-| **Security** | - **Cloudflare CDN** (DDoS protection & performance) | [**All of Us**](https://github.com/team-hackanomics) |
+| **Security** | - **Cloudflare CDN** (DDoS protection & performance) | [**All of Us**](https://github.com/Ehiane/Hackronomics/tree/main) |
 | **Hosting & Deployment** | - **Vercel + Tech domain** (Frontend hosting) | [**Osaze**](https://github.com/Ogieriakhi17) |
 
 
