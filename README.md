@@ -14,7 +14,7 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **FR-2** | Save Points System                  | Users earn "Save Points" based on how much they save each week. |
 | **FR-3** | Custom Savings Strategy             | Users create flexible, personalized savings plans. |
 | **FR-4** | Avatar Customization                | Users spend Save Points to unlock and customize their avatar. |
-| **FR-5** | Add-On Features                     | Users can unlock additional features by saving more over time. |
+| **FR-5** | Add-On Features                     | Users can unlock additional features to use their avatar with other users by saving more over time. |
 | **FR-6** | Engaging UI                         | The app provides an interactive and visually appealing experience. |
 | **FR-7** | Predictable Infrastructure          | The app scales efficiently to accommodate more users. |
 | **FR-8** | Discounts for Extra Savings         | If a user exceeds their weekly savings goal, they receive discounts in the marketplace. |
