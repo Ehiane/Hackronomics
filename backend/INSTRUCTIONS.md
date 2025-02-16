@@ -67,3 +67,9 @@ npm install mongoose
 npm install cors
 ```
 
+## install old version of mongodb
+```sh
+npm install mongodb@5.6.0
+```
+
+

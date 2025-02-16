@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Define absolute path to test.json
-const jsonFilePath = path.resolve(__dirname, "../../../../test.json"); 
+const jsonFilePath = path.resolve(__dirname, "../../../../test.json");
 
 // Read and parse JSON data
 const rawData = fs.readFileSync(jsonFilePath, "utf8");
@@ -11,10 +11,10 @@ const testData = JSON.parse(rawData);
 // Import the AI function to test
 const { suggestCategory } = require("../routes/CategoryAI");
 
-function extractAiCategory(aiCategoryData: string) {
+function extractAiCategory(aiCategoryData) {
     try {
         // If it is a JSON-like string, parse it
-        if (aiCategoryData.startsWith("{") && aiCategoryData.endsWith("}")) {
+        if (typeof aiCategoryData === "string" && aiCategoryData.startsWith("{") && aiCategoryData.endsWith("}")) {
             const parsed = JSON.parse(aiCategoryData); // Convert string to object
             return parsed.aiCategory || "Unknown"; // Extract aiCategory if available
         }
