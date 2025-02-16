@@ -1,6 +1,9 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const path = require('path');
 require('dotenv').config();  // Load environment variables
 
+
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });  // Load environment variables from one folder up
 const uri = process.env.MONGO_URI;  // Use .env variable
 
 const client = new MongoClient(uri, {
