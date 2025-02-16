@@ -1,11 +1,12 @@
 import React from "react";
-import Card, { CardContent } from "../components/Card";
-import Button from "../components/Button";
+import Card, { CardContent } from "./Card";
+import Button from "./Button";
 import { motion } from "framer-motion";
-import AIRecommendations from "../components/AIRecommendations";
-import ExpenseBreakdown from "../components/ExpenseBreakdown";
-import WeeklySavings from "../components/WeeklySavings";
-import BalanceCard from "../components/BalanceCard"; // Import the new component
+import AIRecommendations from "./AIRecommendations";
+import ExpenseBreakdown from "./ExpenseBreakdown";
+import WeeklySavings from "./WeeklySavings";
+import BalanceCard from "./BalanceCard";
+import Avatar3D from "./Avatar3D"; 
 
 const Dashboard = () => {
   return (
@@ -20,8 +21,10 @@ const Dashboard = () => {
       <main className="p-6 flex-1 flex">
         {/* Sidebar with Avatar */}
         <div className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6">
-          <div className="w-32 h-32 bg-gray-300 rounded-full mb-4"></div>
-          <h2 className="text-xl font-semibold">User Name</h2>
+          <div className="w-full h-64">
+         {/*  <Avatar3D />   */}
+          </div>
+          <h2 className="text-xl font-semibold mt-4">User Name</h2>
           <p className="text-gray-500">Placeholder Avatar</p>
         </div>
 
@@ -29,7 +32,7 @@ const Dashboard = () => {
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Balance Card */}
           <motion.div whileHover={{ scale: 1.05 }}>
-            <BalanceCard /> {/* Use the new component here */}
+            <BalanceCard />
           </motion.div>
 
           {/* Weekly Savings Card */}
