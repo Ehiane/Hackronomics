@@ -1,40 +1,98 @@
 import express from "express";
-import mongoose from "mongoose";
-import cors from "cors";
+import session from "express-session";
+import passport from "passport";
+import { Strategy as Auth0Strategy } from "passport-auth0";
+import path from "path";
 import dotenv from "dotenv";
+import { fileURLToPath } from "url";
 
-// Load environment variables
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 dotenv.config();
 
-// Initialize Express App
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-// Avoid connecting to the real database in test environment
-if (process.env.NODE_ENV !== "test") {
-    mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB connected"))
-    .catch(err => console.error("MongoDB connection error:", err));
+// Auth0 Configuration
+const authConfig = {
+  domain: process.env.AUTH0_DOMAIN,
+  clientID: process.env.AUTH0_CLIENTID,
+  clientSecret: process.env.AUTH0_CLIENT_SECRET,
+  callbackURL: "http://localhost:3000/callback",
+};
 
-    // Start the Express server only if NOT in test environment
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+// Session setup
+app.use(
+  session({
+    secret: "secret_key", // Replace with a secure key in production
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-// Define routes
-import userRoutes from "./routes/userRoutes.js";
-// import transactionRoutes from "./routes/transactionRoutes.js";
-import categoryRoutes from "./routes/categoryRoutes.js";
+// Passport configuration
+passport.use(
+  new Auth0Strategy(
+    authConfig,
+    (accessToken, refreshToken, extraParams, profile, done) => {
+      return done(null, profile);
+    }
+  )
+);
 
-// Register API routes
-app.use("/api/users", userRoutes);
-// app.use("/api/transactions", transactionRoutes);
-app.use("/api/categories", categoryRoutes);
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
 
-// API status check route
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Routes
 app.get("/", (req, res) => {
-    res.send("API is running...");
+  res.send('<h1>Welcome</h1><a href="/login">Login</a>');
 });
 
-export default app; // Export the app for testing
+app.get(
+  "/login",
+  passport.authenticate("auth0", { scope: "openid email profile" })
+);
+
+app.get(
+  "/callback",
+  passport.authenticate("auth0", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect("/dashboard");
+  }
+);
+
+app.get("/dashboard", (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect("/");
+  }
+  res.send(
+    `<h1>Welcome to the Dashboard, ${req.user.displayName || "User"}!</h1><a href="/logout">Logout</a>`
+  );
+});
+
+app.get("/api/session", (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
+
+app.get("/logout", (req, res) => {
+  req.logout(() => {
+    res.redirect(
+      `https://${authConfig.domain}/v2/logout?returnTo=http://localhost:3000/login&client_id=${authConfig.clientID}`
+    );
+  });
+});
+
+// Serve React frontend
+app.use(express.static(path.join(__dirname, "../auth0-login-demo/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../auth0-login-demo/build/index.html"));
+});
+
+// Start the server
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
