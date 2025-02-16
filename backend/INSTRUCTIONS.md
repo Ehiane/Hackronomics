@@ -62,3 +62,8 @@ npm install react
 npm install mongoose
 ```
 
+## Install cors for cross origin requests
+```sh
+npm install cors
+```
+

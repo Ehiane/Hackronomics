@@ -1,0 +1,27 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["userID", "baseBody", "clothingItems", "face"],
+    "properties": {
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user who owns the avatar"
+      },
+      "baseBody": {
+        "bsonType": "string",
+        "description": "Default body shape/type"
+      },
+      "clothingItems": {
+        "bsonType": "array",
+        "description": "List of clothing/accessories equipped",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "face": {
+        "bsonType": "string",
+        "description": "Custom face type"
+      }
+    }
+  }
+}
