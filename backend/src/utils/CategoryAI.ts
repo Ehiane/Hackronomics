@@ -1,6 +1,14 @@
 import OpenAI from "openai";
+import dotenv from "dotenv"; // Import dotenv to manage environment variables
+import path from "path";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+
+// console.log(process.env.OPEN_API_KEY);
+console.log("Loaded API Key:", process.env.OPEN_API_KEY);
+
+
+const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
 
 export const suggestCategory = async (transactionData: any): Promise<string> => {
     // If category is already provided, return it unchanged
