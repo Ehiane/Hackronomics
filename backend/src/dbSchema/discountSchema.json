@@ -1,0 +1,34 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "discountID",
+      "userID",
+      "discountPercentage",
+      "expirationDate",
+      "redeemed"
+    ],
+    "properties": {
+      "discountID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the discount"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user who earned the discount"
+      },
+      "discountPercentage": {
+        "bsonType": "double",
+        "description": "Discount percentage applied to the store"
+      },
+      "expirationDate": {
+        "bsonType": "date",
+        "description": "Expiration date for the discount"
+      },
+      "redeemed": {
+        "bsonType": "bool",
+        "description": "Whether the discount has been used"
+      }
+    }
+  }
+}

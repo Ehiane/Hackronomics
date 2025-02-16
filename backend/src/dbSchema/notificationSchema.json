@@ -1,0 +1,28 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["notificationID", "userID", "message", "readStatus", "timestamp"],
+    "properties": {
+      "notificationID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the notification"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user receiving the notification"
+      },
+      "message": {
+        "bsonType": "string",
+        "description": "Notification content"
+      },
+      "readStatus": {
+        "bsonType": "bool",
+        "description": "Whether the user has read the notification"
+      },
+      "timestamp": {
+        "bsonType": "date",
+        "description": "Time when the notification was sent"
+      }
+    }
+  }
+}

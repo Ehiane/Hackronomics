@@ -1,0 +1,29 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["rewardID", "userID", "rewardName", "rewardType", "redeemed"],
+    "properties": {
+      "rewardID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the reward"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user earning the reward"
+      },
+      "rewardName": {
+        "bsonType": "string",
+        "description": "Name of the reward (e.g., \"10% Off Food\")"
+      },
+      "rewardType": {
+        "bsonType": "string",
+        "enum": ["Discount", "Bonus Points", "Special Item"],
+        "description": "Type of reward"
+      },
+      "redeemed": {
+        "bsonType": "bool",
+        "description": "Whether the reward has been claimed"
+      }
+    }
+  }
+}

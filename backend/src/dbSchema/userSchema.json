@@ -1,0 +1,126 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "userID",
+      "name",
+      "email",
+      "DOB",
+      "primaryLocation",
+      "zipcode",
+      "savingsPlan",
+      "avatar",
+      "friendsList"
+    ],
+    "properties": {
+      "userID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the user"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "User's full name"
+      },
+      "email": {
+        "bsonType": "string",
+        "description": "User's email address"
+      },
+      "DOB": {
+        "bsonType": "date",
+        "description": "User's date of birth"
+      },
+      "primaryLocation": {
+        "bsonType": "string",
+        "description": "User's primary location or address"
+      },
+      "zipcode": {
+        "bsonType": "string",
+        "description": "User's ZIP code"
+      },
+      "savingsPlan": {
+        "bsonType": "object",
+        "description": "User's active savings plan (embedded document)",
+        "required": [
+          "savingsPlanID",
+          "userID",
+          "balance",
+          "transactions",
+          "goalAmount",
+          "duration",
+          "progress",
+          "remainingAmount"
+        ],
+        "properties": {
+          "savingsPlanID": {
+            "bsonType": "string",
+            "description": "Unique identifier for the savings plan"
+          },
+          "userID": {
+            "bsonType": "string",
+            "description": "ID of the user associated with the plan"
+          },
+          "balance": {
+            "bsonType": "double",
+            "description": "Total saved amount"
+          },
+          "transactions": {
+            "bsonType": "array",
+            "description": "List of related transaction IDs",
+            "items": {
+              "bsonType": "string"
+            }
+          },
+          "goalAmount": {
+            "bsonType": "double",
+            "description": "Target amount for the savings goal"
+          },
+          "duration": {
+            "bsonType": "string",
+            "description": "Length of time for savings (e.g., weekly, monthly)"
+          },
+          "progress": {
+            "bsonType": "double",
+            "description": "Current progress toward the goal (%)"
+          },
+          "remainingAmount": {
+            "bsonType": "double",
+            "description": "Amount left to reach the goal"
+          }
+        }
+      },
+      "avatar": {
+        "bsonType": "object",
+        "description": "Stores the avatar’s customization details",
+        "required": ["userID", "baseBody", "clothingItems", "face"],
+        "properties": {
+          "userID": {
+            "bsonType": "string",
+            "description": "ID of the user who owns the avatar"
+          },
+          "baseBody": {
+            "bsonType": "string",
+            "description": "Default body shape/type"
+          },
+          "clothingItems": {
+            "bsonType": "array",
+            "description": "List of clothing/accessories equipped",
+            "items": {
+              "bsonType": "string"
+            }
+          },
+          "face": {
+            "bsonType": "string",
+            "description": "Custom face type"
+          }
+        }
+      },
+      "friendsList": {
+        "bsonType": "array",
+        "description": "List of user IDs representing friends",
+        "items": {
+          "bsonType": "string"
+        }
+      }
+    }
+  }
+}

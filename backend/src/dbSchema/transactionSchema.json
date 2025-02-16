@@ -1,0 +1,73 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "transactionID",
+      "userID",
+      "amountSpent",
+      "transactionType",
+      "transactionDate",
+      "location",
+      "description",
+      "merchantName",
+      "merchantType",
+      "category"
+    ],
+    "properties": {
+      "transactionID": {
+        "bsonType": "string",
+        "description": "Unique transaction identifier and is required"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user making the transaction and is required"
+      },
+      "amountSpent": {
+        "bsonType": "double",
+        "description": "Amount spent on the transaction and is required"
+      },
+      "transactionType": {
+        "bsonType": "string",
+        "description": "Type of transaction (e.g., Card) and is required"
+      },
+      "transactionDate": {
+        "bsonType": "date",
+        "description": "Date when the transaction occurred and is required"
+      },
+      "location": {
+        "bsonType": "object",
+        "required": ["city", "state", "zipcode"],
+        "properties": {
+          "city": {
+            "bsonType": "string",
+            "description": "City where the transaction took place"
+          },
+          "state": {
+            "bsonType": "string",
+            "description": "State where the transaction took place"
+          },
+          "zipcode": {
+            "bsonType": "string",
+            "description": "Zipcode of the transaction location"
+          }
+        }
+      },
+      "description": {
+        "bsonType": "string",
+        "description": "Description of the transaction"
+      },
+      "merchantName": {
+        "bsonType": "string",
+        "description": "Name of the merchant"
+      },
+      "merchantType": {
+        "bsonType": "string",
+        "description": "Type of merchant"
+      },
+      "category": {
+        "bsonType": "string",
+        "description": "Category of the transaction"
+      }
+    }
+  }
+}

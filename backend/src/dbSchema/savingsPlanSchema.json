@@ -1,0 +1,52 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "savingsPlanID",
+      "userID",
+      "balance",
+      "transactions",
+      "goalAmount",
+      "duration",
+      "progress",
+      "remainingAmount"
+    ],
+    "properties": {
+      "savingsPlanID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the savings plan"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user associated with the plan"
+      },
+      "balance": {
+        "bsonType": "double",
+        "description": "Total saved amount"
+      },
+      "transactions": {
+        "bsonType": "array",
+        "description": "List of related transaction IDs",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "goalAmount": {
+        "bsonType": "double",
+        "description": "Target amount for the savings goal"
+      },
+      "duration": {
+        "bsonType": "string",
+        "description": "Length of time for savings (e.g., weekly, monthly)"
+      },
+      "progress": {
+        "bsonType": "double",
+        "description": "Current progress toward the goal (%)"
+      },
+      "remainingAmount": {
+        "bsonType": "double",
+        "description": "Amount left to reach the goal"
+      }
+    }
+  }
+}

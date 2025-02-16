@@ -1,0 +1,24 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["itemID", "category", "imageURL", "price"],
+    "properties": {
+      "itemID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the store item"
+      },
+      "category": {
+        "bsonType": "string",
+        "description": "Type of item (Clothing, Accessories, etc.)"
+      },
+      "imageURL": {
+        "bsonType": "string",
+        "description": "URL to the item's image"
+      },
+      "price": {
+        "bsonType": "double",
+        "description": "Price in Save Points"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["leaderboardID", "userID", "totalSavings", "rank"],
+    "properties": {
+      "leaderboardID": {
+        "bsonType": "string",
+        "description": "Unique identifier for the leaderboard entry"
+      },
+      "userID": {
+        "bsonType": "string",
+        "description": "ID of the user on the leaderboard"
+      },
+      "totalSavings": {
+        "bsonType": "double",
+        "description": "Total amount saved by the user"
+      },
+      "rank": {
+        "bsonType": "int",
+        "description": "Position in the leaderboard"
+      }
+    }
+  }
+}
