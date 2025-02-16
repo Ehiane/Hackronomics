@@ -1,22 +1,21 @@
 import { Request, Response } from "express";
-import Transaction from "../models/Transaction";
-import { suggestCategory } from "../routes/CategoryAI";
+import { transactionImprovement } from "../routes/TransactionAI"; // Import AI function
 
-export const createTransaction = async (req: Request, res: Response) => {
+export const transactionRec = async (req: Request, res: Response): Promise<void> => {
     try {
-        let { amountSpent, transactionDate, location, vendor, category } = req.body;
+        const transactionData = req.body; // JSON from request
 
-        // If category is missing, use AI to generate one
-        if (!category) {
-            category = await suggestCategory(req.body);
+        if (!transactionData) {
+            res.status(400).json({ error: "Invalid or missing transaction data" });
+            return;
         }
 
-        const newTransaction = new Transaction({ amountSpent, transactionDate, location, vendor, category });
-        await newTransaction.save();
+        // Use AI only if category is missing
+        const transaction = await transactionImprovement(transactionData);
 
-        res.status(201).json(newTransaction);
+        res.status(200).json({ transaction });
     } catch (error) {
-        console.error("Error creating transaction:", error);
-        res.status(500).json({ error: "Transaction creation failed" });
+        console.error("Error generating transaction:", error);
+        res.status(500).json({ error: "Failed to generate transaction advice" });
     }
 };

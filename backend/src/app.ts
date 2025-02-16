@@ -8,7 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes"; // Import the category rou
 dotenv.config(); // Load environment variables
 
 const app = express(); // Initialize Express app
-const PORT = process.env.PORT || 5000; // Set default port
+const PORT = process.env.PORT || 3000; // Set default port
 
 connectDB(); // Connect to MongoDB
 
