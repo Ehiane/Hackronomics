@@ -69,12 +69,21 @@ export const suggestCategory = async (transactionData: any): Promise<string> => 
     `;
 
     try {
+        console.log(`AI Processing Transaction: ${transactionData.transactionID}`);
+        
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [{ role: "system", content: prompt }, { role: "user", content: JSON.stringify(transactionData) }],
         });
 
-        return response.choices[0].message.content?.trim() || "Miscellaneous Expenses";
+        // Extract and clean the AI's response to get the category.
+        const category = response.choices[0].message.content?.trim() || "Miscellaneous Expenses";
+
+        console.log(`AI Category for ${transactionData.transactionID}: ${category}`);
+
+        // Return the suggested category from AI.
+        return category;     
+
     } catch (error) {
         console.error("AI Category Suggestion Error:", error);
         return "Miscellaneous Expenses"; // Default fallback

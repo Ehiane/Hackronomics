@@ -3,6 +3,7 @@ import cors from "cors"; // Import CORS for cross-origin requests
 import dotenv from "dotenv"; // Import dotenv to manage environment variables
 import connectDB from "./config/mongoConnect"; // Import MongoDB connection function
 // import userRoutes from "./routes/userRoutes"; // Import user routes
+import categoryRoutes from "./routes/categoryRoutes"; // Import the category routes
 
 dotenv.config(); // Load environment variables
 
@@ -17,6 +18,7 @@ app.use(express.json()); // Parse incoming JSON requests
 
 // Define API Routes
 // app.use("/api/users", userRoutes); // Use user routes under /api/users
+app.use("/api/ai-category", categoryRoutes); // Use category routes under /api
 
 // Default route
 app.get("/", (req, res) => {
