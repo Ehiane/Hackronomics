@@ -46,7 +46,7 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 | **Hosting & Deployment** | - **Vercel + Tech domain** (Frontend hosting) | [**Osaze**](https://github.com/Ogieriakhi17) |
 
 
-# Database Schema - Hackanomics 💰🎨
+# Database Schema - Hackanomics
 
 The following is the **database schema** for **Hackanomics**, built using **MongoDB Atlas**.
 
