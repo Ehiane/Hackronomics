@@ -7,6 +7,7 @@ import ExpenseBreakdown from "./ExpenseBreakdown";
 import WeeklySavings from "./WeeklySavings";
 import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
+import { Canvas } from '@react-three/fiber'; // Import Canvas
 
 const Dashboard = () => {
   return (
@@ -22,8 +23,10 @@ const Dashboard = () => {
         {/* Sidebar with Avatar */}
         <div className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6">
           <div className="w-full h-64">
-            
-         {/*     */}
+            <Canvas>
+              {/* Ensure Avatar3D renders a 3D object */}
+              <Avatar3D />
+            </Canvas>
           </div>
           <h2 className="text-xl font-semibold mt-4">User Name</h2>
           <p className="text-gray-500">Placeholder Avatar</p>
