@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { suggestCategory } from "../utils/CategoryAI"; // Import AI function
+import { suggestCategory } from "../routes/CategoryAI"; // Import AI function
 
 export const generateCategory = async (req: Request, res: Response): Promise<void> => {
     try {

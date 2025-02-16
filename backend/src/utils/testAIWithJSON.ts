@@ -6,18 +6,44 @@ const jsonFilePath = path.resolve(__dirname, "../../../../test.json");
 
 // Read and parse JSON data
 const rawData = fs.readFileSync(jsonFilePath, "utf8");
-const jsonData = JSON.parse(rawData);
+const testData = JSON.parse(rawData);
 
 // Import the AI function to test
-const { suggestCategory } = require("./CategoryAI");
+const { suggestCategory } = require("../routes/CategoryAI");
+
+function extractAiCategory(aiCategoryData: string) {
+    try {
+        // If it is a JSON-like string, parse it
+        if (aiCategoryData.startsWith("{") && aiCategoryData.endsWith("}")) {
+            const parsed = JSON.parse(aiCategoryData); // Convert string to object
+            return parsed.aiCategory || "Unknown"; // Extract aiCategory if available
+        }
+        return aiCategoryData; // Otherwise, it's already a valid string
+    } catch (error) {
+        return "Parsing Error"; // Handle JSON parsing error
+    }
+}
 
 // Function to test AI category suggestion
 async function testCategoryAI() {
     try {
-        console.log("Testing AI category suggestion with test.json data...");
+        console.log("Testing AI category suggestion with test.json data...\n");
 
-        const result = await suggestCategory(jsonData);
-        console.log("AI Suggested Category:", result);
+        // Loop through each transaction and test AI category
+        for (const transaction of testData.transactions) {
+            const result = await suggestCategory(transaction);
+
+            // Ensure result is an object and extract only the necessary fields
+            let aiCategory = extractAiCategory(result);
+
+            // ✅ Print only relevant fields
+            console.log({
+                transactionID: transaction.transactionID,
+                userID: transaction.userID,
+                accountName: testData.accountName, // Assuming accountName is at the root
+                aiCategory: aiCategory
+            });
+        }
     } catch (error) {
         console.error("Error testing AI category function:", error);
     }
@@ -25,5 +51,3 @@ async function testCategoryAI() {
 
 // Run the test
 testCategoryAI();
-
-// command to run : npx ts-node backend/src/utils/testAIWithJSON.ts

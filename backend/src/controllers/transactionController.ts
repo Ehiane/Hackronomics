@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Transaction from "../models/Transaction";
-import { suggestCategory } from "../utils/CategoryAI";
+import { suggestCategory } from "../routes/CategoryAI";
 
 export const createTransaction = async (req: Request, res: Response) => {
     try {
