@@ -16,7 +16,7 @@ async function connectDB() {
   try {
     await client.connect();
     await client.db("admin").command({ ping: 1 });
-    console.log("Connected to MongoDB!");
+    console.log("Connected to the Hackronomics MongoDB Database!");
   } catch (error) {
     console.error("MongoDB Connection Error:", error);
     process.exit(1);
