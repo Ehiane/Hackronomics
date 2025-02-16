@@ -2,13 +2,12 @@ import React from "react";
 import { useLoader } from '@react-three/fiber'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader'
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useFBX } from "@react-three/drei";
 import { Suspense } from "react";
 
 
 
 function AvatarModel() {
-  const fbx = useFBX('/avatar.fbx')
+  const fbx = useLoader(FBXLoader, '/avatar.fbx')
   return <primitive object={fbx} />
 };
 

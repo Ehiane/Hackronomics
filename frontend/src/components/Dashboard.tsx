@@ -6,7 +6,6 @@ import AIRecommendations from "./AIRecommendations";
 import ExpenseBreakdown from "./ExpenseBreakdown";
 import WeeklySavings from "./WeeklySavings";
 import BalanceCard from "./BalanceCard";
-import Avatar3D from "./Avatar3D"; 
 
 const Dashboard = () => {
   return (
@@ -22,7 +21,7 @@ const Dashboard = () => {
         {/* Sidebar with Avatar */}
         <div className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6">
           <div className="w-full h-64">
-         {/*  <Avatar3D />   */}
+         {/*     */}
           </div>
           <h2 className="text-xl font-semibold mt-4">User Name</h2>
           <p className="text-gray-500">Placeholder Avatar</p>
