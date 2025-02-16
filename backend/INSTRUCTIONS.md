@@ -51,3 +51,14 @@ Inside your **backend folder**, create the following structure:
 │── nodemon.json       # Nodemon auto-reload config
 │── README.md          # Documentation
 ```
+
+## Install React
+```sh
+npm install react
+```
+
+## Install mongoose for MongoDB
+```sh
+npm install mongoose
+```
+
