@@ -4,6 +4,8 @@ export const generateCategory = async (req, res) => {
     try {
         const transactionData = req.body; // JSON from request
 
+        console.log(transactionData);
+
         if (!transactionData) {
             res.status(400).json({ error: "Invalid or missing transaction data" });
             return;

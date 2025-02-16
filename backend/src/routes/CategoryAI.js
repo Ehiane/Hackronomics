@@ -14,6 +14,7 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
 
 export const suggestCategory = async (transactionData) => {
+    console.log("Transaction Data:", transactionData);
     // If category is already provided, return it unchanged
     if (transactionData.category) {
         return transactionData.category;
@@ -67,6 +68,8 @@ export const suggestCategory = async (transactionData) => {
     - Avoid broad categories—be as specific as possible.
     - If a category does not fit exactly, match it to a closely related category.
     - Return only the category name with no extra text.
+    - Put true in aiCategory if a category is suggested, false if not in the aiCategory field.
+    - Put the assigned category in the category field.
     `;
 
     try {

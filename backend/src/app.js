@@ -12,6 +12,9 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Auth0 Configuration
 const authConfig = {
   domain: process.env.AUTH0_DOMAIN,
@@ -19,6 +22,18 @@ const authConfig = {
   clientSecret: process.env.AUTH0_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/callback",
 };
+
+// Define routes
+import userRoutes from "./routes/userRoutes.js";
+import transactionAIRoutes from "./routes/transactionAIRoutes.js"
+import transactionRoutes from "./routes/TransactionRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+
+// Register API routes
+app.use("/api/users", userRoutes);
+app.use("/api/transactionAI", transactionAIRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/categories", categoryRoutes);
 
 // Session setup
 app.use(

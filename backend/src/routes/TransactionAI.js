@@ -42,6 +42,8 @@ const getLocation = async (latitude, longitude) => {
             }
         });
 
+        // console.log("Location Details:", response.data);
+
         if (response.data.results.length > 0) {
             let city = "";
             let state = "";
@@ -108,7 +110,8 @@ export const transactionImprovement = async (transactionData) => {
     - Any custom insights based on spending trends.
     - Number the bullet points.
     - Provide the user with cheaper alternatives if available based on their location: ${userLocation}.
-    - Do NOT add next lines or "**"!!!›
+    - Do NOT add next lines or "**"!!!
+    - Make sure to mention the users location in the introduction.
     `;
 
     try {
