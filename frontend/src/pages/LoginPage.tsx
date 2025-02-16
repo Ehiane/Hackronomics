@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import loginpic from "../loginpic.jpeg"; // Import the image
+import loginpic from "../loginpic.jpeg";
+import logo from "../Hackanomics_logo.png"; // Import the logo
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -10,14 +11,14 @@ const LoginPage = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    // Dummy check for login (replace with real authentication)
+
+    // Dummy check for login
     if (email === "test@example.com" && password === "password123") {
       console.log("Login successful");
       // Redirect to dashboard after successful login
       navigate("/dashboard");
     } else {
-      setError("Invalid email or password"); // Show error if login fails
+      setError("Invalid email or password");
     }
   };
 
@@ -28,9 +29,12 @@ const LoginPage = () => {
     >
       <div className="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-          <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">Hackronomics</h1>
+          {/* Add logo at the top */}
+          <div className="flex justify-center mb-6">
+            <img src={logo} alt="Hackronomics Logo" className="h-16 w-auto" />
+          </div>
           <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
-          
+
           {error && <p className="text-red-500 text-center mb-4">{error}</p>} {/* Display error */}
 
           <form onSubmit={handleSubmit}>
