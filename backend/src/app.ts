@@ -3,7 +3,7 @@ import cors from "cors"; // Import CORS for cross-origin requests
 import dotenv from "dotenv"; // Import dotenv to manage environment variables
 import connectDB from "./config/mongoConnect"; // Import MongoDB connection function
 // import userRoutes from "./routes/userRoutes"; // Import user routes
-import jsonParserRouter from "./routes/JsonParser";
+import jsonAITool from "./routes/OpenAITool";
 
 dotenv.config(); // Load environment variables
 
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 // Additional Routes
-app.use("/bank-info", jsonParserRouter);
+app.use("/bank-info", jsonAITool);
 
 // Start the server
 app.listen(PORT, () => {
