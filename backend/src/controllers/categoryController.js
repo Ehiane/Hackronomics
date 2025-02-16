@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
-import { suggestCategory } from "../routes/CategoryAI"; // Import AI function
+import { suggestCategory } from "../routes/CategoryAI.js"; // Import AI function
 
-export const generateCategory = async (req: Request, res: Response): Promise<void> => {
+export const generateCategory = async (req, res) => {
     try {
         const transactionData = req.body; // JSON from request
 

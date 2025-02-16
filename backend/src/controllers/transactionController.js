@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import Transaction from "../models/Transaction.js";
 import { transactionImprovement } from "../routes/TransactionAI"; // Import AI function
 
-export const transactionRec = async (req: Request, res: Response): Promise<void> => {
+export const createTransaction = async (req, res) => {
     try {
         const transactionData = req.body; // JSON from request
 

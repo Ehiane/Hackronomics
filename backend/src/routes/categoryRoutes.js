@@ -1,6 +1,6 @@
 import express from "express";
-import { generateCategory } from "../controllers/categoryController"; // Use controller logic
-import { transactionRec } from "../controllers/transactionController"; // Use controller logic
+import { generateCategory } from "../controllers/categoryController.js";
+import { transactionRec } from "../controllers/transactionController.js";
 
 const router = express.Router();
 

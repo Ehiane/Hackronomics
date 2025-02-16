@@ -1,26 +1,27 @@
 import OpenAI from "openai";
 import dotenv from "dotenv"; // Import dotenv to manage environment variables
 import path from "path";
+import { fileURLToPath } from "url";
 
+// Convert __dirname for ESM compatibility
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
-
-// console.log(process.env.OPEN_API_KEY);
-console.log("Loaded API Key:", process.env.OPEN_API_KEY);
 
 
 const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
 
-export const suggestCategory = async (transactionData: any): Promise<string> => {
+export const suggestCategory = async (transactionData) => {
     // If category is already provided, return it unchanged
     if (transactionData.category) {
         return transactionData.category;
     }
 
-    if (transactionData.aiCategory === "false" || transactionData.aiCategory === false){
-
+    if (transactionData.aiCategory === "false" || transactionData.aiCategory === false) {
         return "";
     }
-
 
     const prompt = `
     You are an AI specializing in financial transaction analysis. Your task is to categorize a transaction based on the provided details.
@@ -70,7 +71,7 @@ export const suggestCategory = async (transactionData: any): Promise<string> => 
 
     try {
         console.log(`AI Processing Transaction: ${transactionData.transactionID}`);
-        
+
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [{ role: "system", content: prompt }, { role: "user", content: JSON.stringify(transactionData) }],
@@ -82,7 +83,7 @@ export const suggestCategory = async (transactionData: any): Promise<string> => 
         console.log(`AI Category for ${transactionData.transactionID}: ${category}`);
 
         // Return the suggested category from AI.
-        return category;     
+        return category;
 
     } catch (error) {
         console.error("AI Category Suggestion Error:", error);
