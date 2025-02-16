@@ -1,5 +1,10 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Define absolute path to test.json
 const jsonFilePath = path.resolve(__dirname, "../../../../test.json");
@@ -9,7 +14,7 @@ const rawData = fs.readFileSync(jsonFilePath, "utf8");
 const testData = JSON.parse(rawData);
 
 // Import the AI function to test
-const { suggestCategory } = require("../routes/CategoryAI");
+import { suggestCategory } from "../routes/CategoryAI.js";
 
 function extractAiCategory(aiCategoryData) {
     try {
@@ -51,3 +56,6 @@ async function testCategoryAI() {
 
 // Run the test
 testCategoryAI();
+
+// navigate to the src folder and run this:
+// run this code: node utils/testAIWithJSON.js
