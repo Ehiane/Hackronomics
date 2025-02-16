@@ -2,14 +2,20 @@ import OpenAI from "openai";
 import dotenv from "dotenv"; // Import dotenv to manage environment variables
 import axios from "axios";
 import path from "path";
+import { fileURLToPath } from "url";
 
+// Convert `__dirname` for ESM compatibility
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load environment variables
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 const openai = new OpenAI({ apiKey: process.env.OPEN_API_KEY });
-
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 
-const getUserCoordinates = async (): Promise<{ latitude: number; longitude: number } | null> => {
+// Function to get user's coordinates based on IP address
+const getUserCoordinates = async () => {
     try {
         const response = await axios.get("https://ipinfo.io/json", {
             params: { token: process.env.IPINFO_API_KEY }
@@ -17,16 +23,17 @@ const getUserCoordinates = async (): Promise<{ latitude: number; longitude: numb
 
         if (response.data.loc) {
             const [latitude, longitude] = response.data.loc.split(",").map(Number);
-            console.log(`user location: ${latitude}, ${longitude}`);
+            console.log(`User Location: ${latitude}, ${longitude}`);
             return { latitude, longitude };
         }
     } catch (error) {
-        console.error("error:", error);
+        console.error("Error fetching user coordinates:", error);
     }
     return null;
 };
 
-const getLocation = async (latitude: number, longitude: number): Promise<string | null> => {
+// Function to get city and state using Google Maps API
+const getLocation = async (latitude, longitude) => {
     try {
         const response = await axios.get("https://maps.googleapis.com/maps/api/geocode/json", {
             params: {
@@ -51,12 +58,13 @@ const getLocation = async (latitude: number, longitude: number): Promise<string 
             return city && state ? `${city}, ${state}` : null;
         }
     } catch (error) {
-        console.error("error:", error);
+        console.error("Error fetching location details:", error);
     }
     return null;
 };
 
-export const transactionImprovement = async (transactionData: any): Promise<string> => {
+// Function to generate financial improvement recommendations based on transactions
+export const transactionImprovement = async (transactionData) => {
     let userLocation = "null";
 
     // Fetch user's approximate location
@@ -90,7 +98,7 @@ export const transactionImprovement = async (transactionData: any): Promise<stri
     - Financial Priorities (e.g., saving for a house, reducing debt, investing more): {financialPriorities}
 
     Expected Output:
-    - The response must be plain text, a string that can be handled and printed pretty with typescript.
+    - The response must be plain text, a string that can be handled and printed pretty with JavaScript.
     - A concise introduction summarizing the users spending behavior based on the transaction.
     - Add several Bullet-point recommendations on how to improve financial habits, including:
     - Ways to cut unnecessary spending.
@@ -111,7 +119,7 @@ export const transactionImprovement = async (transactionData: any): Promise<stri
 
         return response.choices[0].message.content?.trim() || "";
     } catch (error) {
-        console.error("AI Savings Recommendation:", error);
+        console.error("AI Savings Recommendation Error:", error);
         return "Miscellaneous Expenses"; // Default fallback
     }
 };

@@ -1,5 +1,5 @@
 import Transaction from "../models/Transaction.js";
-import { transactionImprovement } from "../routes/TransactionAI"; // Import AI function
+import { transactionImprovement } from "../routes/TransactionAI.js"; // Import AI function
 
 export const createTransaction = async (req, res) => {
     try {
