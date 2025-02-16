@@ -5,6 +5,7 @@
       "userID",
       "name",
       "email",
+      "password",
       "DOB",
       "primaryLocation",
       "zipcode",
@@ -24,6 +25,10 @@
       "email": {
         "bsonType": "string",
         "description": "User's email address"
+      },
+      "password": {
+        "bsonType": "string",
+        "description": "User's password"
       },
       "DOB": {
         "bsonType": "date",
