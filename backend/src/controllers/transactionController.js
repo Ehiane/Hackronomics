@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
-import Transaction from "../models/Transaction";
-import { suggestCategory } from "../routes/CategoryAI";
+import Transaction from "../models/Transaction.js";
+import { suggestCategory } from "../routes/CategoryAI.js";
 
-export const createTransaction = async (req: Request, res: Response) => {
+export const createTransaction = async (req, res) => {
     try {
         let { amountSpent, transactionDate, location, vendor, category } = req.body;
 
