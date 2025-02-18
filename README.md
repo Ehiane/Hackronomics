@@ -7,6 +7,8 @@ An AI-driven finance tracking web app that helps users monitor expenses, manage 
 ##  Explanation video
 https://github.com/user-attachments/assets/14b9bc74-91f9-4afe-94c9-17650b45b11b
 
+## Frontend Demo
+https://github.com/user-attachments/assets/c79f2391-b7bf-4e70-af99-eaea539b0a7e
 
 
 ##  Functional & Non-Functional Requirements for Hackronomics
