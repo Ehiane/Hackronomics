@@ -7,3 +7,4 @@ backend/dist/
 frontend/node_modules/
 frontend/.env
 frontend/build/
+node_modules

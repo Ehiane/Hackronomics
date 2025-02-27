@@ -8,7 +8,7 @@ import AdminDashboard from './components/Admin/pages/Dashboard';
 import Users from './components/Admin/pages/Users';
 import Transactions from './components/Admin/pages/Transactions';
 import Settings from './components/Admin/pages/Settings';
-import Sidebar from './components/Admin/components/Sidebar';
+import Sidebar from './components/Admin/components/AdminSidebar';
 
 function App() {
   return (
