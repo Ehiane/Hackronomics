@@ -1,9 +1,9 @@
 import React, { useState, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import loginpic from "../loginpic.jpeg";
-import logo from "../Hackanomics_logo.png"; // Import the logo
 
 const LoginPage = () => {
+  const logo = "/Hackanomics_logo.png"; // get the logo
+  const loginpic = "./loginpic.jpeg";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // To show error if login fails

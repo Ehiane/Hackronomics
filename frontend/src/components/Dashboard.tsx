@@ -9,12 +9,10 @@ import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
 
-// Import the logo (if using src/assets)
-import logo from "../Hackanomics_logo.png";
-
 const Dashboard = () => {
   // Initial savings value
   const [savings, setSavings] = useState(1200);
+  const logo = "/Hackanomics_logo.png";
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">

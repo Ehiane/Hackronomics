@@ -1,0 +1,105 @@
+/* General Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+  padding: 0.5rem 2rem;
+  background-color: #727fa8;
+  height: 100px; /* Set a standard height */
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  position: fixed; /* Ensures it stays at the top */
+  top: 0; /* Stick to the top */
+  left: 0; /* Stick to the left */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+/* Logo and Brand */
+.brand-logo-container {
+  display: flex;
+  align-items: center; /* Aligns the logo and text vertically */
+}
+
+.brand-logo {
+  font-size: 27px; /* Match the font size with buttons */
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  margin-right: 15px; /* Add space between gciConnect and the image */
+  padding-top: 5px; /* Align with the other elements */
+}
+
+.logo {
+  height: 60px; /* Resized logo */
+  /* margin-top: -10px; */
+  margin-right: 10px;
+}
+
+/* Navigation Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center; /* Ensures the links are aligned vertically */
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 27px; /* Set the same size as gciConnect */
+  /* color: #000; */
+  color: white;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #cd7a61; /* Orange-ish color on hover */
+}
+
+.nav-links a.active {
+  background-color: #cd7a61;  /* Orange-ish color on hover */
+  color: white;
+  border-radius: 15px; /* Increased border-radius for more rounded corners */
+}
+
+.nav-links a.active:hover {
+  background-color: #cd7a61; /* Keep the background Orange-ish on hover */
+  color: black; /* Change text color to black on hover */
+}
+
+body {
+  padding-top: 100px; /* Matches navbar height */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack the items vertically on small screens */
+    height: auto; /* Let the height adjust */
+
+    padding: 0.5rem;
+  }
+  .nav-links {
+    flex-direction: column; /* Stack the nav links */
+
+    align-items: center; /* Center items */
+    gap: 10px; /* Ensure spacing between nav options */
+  }
+  .logo {
+    height: 40px; /* Adjust the logo size for smaller screens */
+  }
+  .nav-links a {
+    font-size: 1rem; /* Reduce font size for mobile views */
+
+    padding: 8px 12px; /* Adjust padding */
+  }
+  .nav-links a.active {
+    border-radius: 10px; /* Reduce rounded effect */
+    padding: 6px 10px; /* Reduce padding to make it smaller */
+  }
+}

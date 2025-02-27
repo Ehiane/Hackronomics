@@ -1,0 +1,204 @@
+.body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  /* Background color for the whole page */
+}
+
+input[type="email"],
+input[type="password"] {
+  margin-bottom: -60px;
+  /* Adjust this value as needed */
+  padding: 10px;
+  /* Adjust for any spacing inside the input */
+}
+
+.wrapper-login {
+  /* Unique class for login wrapper */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  /* Full height of the viewport */
+  padding: 20px;
+  /* Padding around the wrapper */
+  margin-top: 50px;
+}
+
+.title-login {
+  /* Unique class for login title */
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  /* Text color for the title */
+  text-align: center;
+}
+
+.form-login {
+  /* Unique class for login form */
+  width: 100%;
+  /* Ensure full width */
+  max-width: 800px;
+  /* Increase the max width for the form */
+  background: white;
+  /* Background color for the form */
+  border-radius: 15px;
+  /* Increased border-radius for rounder corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  padding: 40px;
+  /* Increased padding inside the form */
+  position: relative;
+  /* Ensures the pseudo element is positioned correctly */
+}
+
+.form-login::before {
+  content: "Login Form";
+  /* Updated title content */
+  display: block;
+  width: 100%;
+  /* Set to full width */
+  height: 100px;
+  /* Increase height for the orange-ish section */
+  background-color: #cd7a61;
+  /* Orange-ish background color */
+  position: absolute;
+  top: -70px;
+  /* Adjust this value to move it up or down */
+  left: 0;
+  /* Ensure it starts from the left edge */
+  border-radius: 15px 15px 0 0;
+  /* Rounded top corners */
+  color: white;
+  /* Text color */
+  font-size: 26px;
+  /* Increase font size for the title */
+  line-height: 100px;
+  /* Center the text vertically */
+  text-align: center;
+  /* Center the text horizontally */
+  font-weight: bold;
+  /* Make the title bold */
+}
+
+.field-login {
+  /* Unique class for login fields */
+  position: relative;
+  margin-bottom: 20px;
+  /* Space between fields */
+  margin-top: 50px;
+  /* Ensure space below the title */
+}
+
+.field-login input {
+  width: 100%;
+  padding: 20px;
+  /* Increased padding for taller input */
+  border: 2px solid lightgrey;
+  /* Border color */
+  border-radius: 15px;
+  /* Increased border-radius for rounder corners */
+  font-size: 16px;
+  /* Font size for input */
+  background-color: white;
+  /* Ensure input fields have a white background */
+  color: black;
+  /* Ensure text is visible */
+  height: 50px;
+  /* Adjust height to fit your design */
+}
+
+.field-login input:focus {
+  border-color: #cd7a61;
+  /* Border color on focus */
+  outline: none;
+  /* Remove outline */
+}
+
+.field-login label {
+  position: absolute;
+  left: 10px;
+  /* Label position */
+  top: 10px;
+  /* Label position */
+  transition: 0.2s;
+  /* Smooth transition */
+  font-size: 16px;
+  /* Font size for labels */
+  color: #999;
+  /* Color for labels */
+}
+
+.field-login input:focus+label,
+.field-login input:not(:placeholder-shown)+label {
+  top: -20px;
+  /* Move the label up */
+  left: 5px;
+  /* Move the label left */
+  font-size: 15px;
+  /* Smaller font size for active label */
+  color: #cd7a61;
+  /* Color for active label */
+}
+
+.auth-btn-login {
+  /* Unique class for login button */
+  width: 100%;
+  /* Full width for button */
+  padding: 15px;
+  /* Increased padding for taller button */
+  border: none;
+  /* No border */
+  border-radius: 15px;
+  /* Increased border-radius for rounder corners */
+  background-color: #cd7a61;
+  /* Button background color */
+  color: white;
+  /* Button text color */
+  font-size: 16px;
+  /* Font size for button */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  transition: background-color 0.2s;
+  /* Transition for hover effect */
+  margin-top: 15px;
+  line-height: 0;
+  font-weight: bold;
+  /* Make the button text bold */
+}
+
+.auth-btn-login:hover {
+  /* Hover effect for login button */
+  background-color: #cd7a61;
+  /* Button background color on hover */
+}
+
+.p-login {
+  /* Unique class for login paragraph */
+  text-align: center;
+  /* Center the paragraph text */
+  margin-top: 20px;
+  /* Margin on top */
+}
+
+.p-login a {
+  /* Unique class for login links */
+  color: #007bff;
+  /* Link color */
+  text-decoration: none;
+  /* Remove underline */
+}
+
+.p-login a:hover {
+  /* Hover effect for login links */
+  text-decoration: underline;
+  /* Underline on hover */
+}
+
+/* Even smaller screens (e.g., mobile) */
+@media screen and (max-width: 550px) {
+  .wrapper-login {
+    padding-top: 160px; 
+  }
+}

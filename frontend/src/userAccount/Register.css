@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  background: #f2f2f2;
+}
+
+::selection {
+  background: #4158d0;
+  color: #fff;
+}
+
+.wrapper-register { /* Unique class for register wrapper */
+  width: 1000px; /* Adjusted width for wider form */
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 60px 40px 40px 40px; /* Added padding for better spacing */
+  position: relative; /* Allow absolute positioning within */
+  margin-top: 50px;
+}
+
+.form-register {
+  display: flex;
+  flex-wrap: wrap; /* Allows the form to use multiple columns */
+  justify-content: space-between; /* Distribute space between fields */
+  position: relative; /* Contains absolutely positioned title */
+}
+
+.form-register .title-register { /* Unique class for title */
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+  user-select: none;
+  background: #cd7a61;
+  width: 108.7%;
+  border-radius: 15px 15px 0 0;
+  height: 60px; /* Adjust height to fit your design */
+  position: absolute; /* Position it absolutely within the form */
+  top: -60px; /* Move this up or down to adjust the placement */
+  left: -40px;
+  right: 0;
+  z-index: 1; /* Ensure it stays above other elements */
+}
+
+.form-register .field {
+  width: 48%; /* Two-column layout */
+  margin-top: 40px; /* Ensure space below the title */
+  position: relative;
+}
+
+.form-register .field input,
+.form-register .field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #666; /* Darker border color */
+  border-radius: 15px;
+  font-size: 17px;
+  height: 53px; /* Adjust height to fit your design */
+  transition: all 0.3s ease;
+  margin-top: 5px;
+  background-color: white; /* Text box background color */
+  color: #333; /* Darker text color */
+}
+
+.form-register .field input:focus,
+.form-register .field input:valid,
+.form-register .field select:focus,
+.form-register .field select:valid {
+  border-color: #444; /* Darker border color on focus */
+  background-color: white; /* Focus background color */
+  color: #222; /* Darker text color on focus */
+}
+
+.form-register .field label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  color: #6f6e6e;
+  font-weight: 400;
+  font-size: 17px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.form-register .field input:focus ~ label,
+.form-register .field input:valid ~ label,
+.form-register .field select:focus ~ label,
+.form-register .field select:valid ~ label {
+  top: 0%;
+  font-size: 16px;
+  color: white;
+  /* background: #a32436; */
+  background: #cd7a61;
+  padding: 0 5px;
+  transform: translateY(-50%);
+}
+
+/* Ensure submit button has its own styles */
+.form-register .field .auth-btn {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #444; /* Add border to the button */
+  border-radius: 15px;
+  background-color: #cd7a61; /* Initial background color */
+  color: white; /* Text color */
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Adjust transition to make it smoother */
+  margin-top: 4px;
+}
+
+.form-register .field .auth-btn:hover {
+  background-color: #cd7a61;  /* Hover color */
+}
+
+.form-register .field .auth-btn:active {
+  transform: scale(0.95);
+}
+
+/* .p-register { 
+  text-align: center; 
+  margin-top: 20px; 
+} */
+
+.p-register { /* Unique class for login paragraph */
+  text-align: center; /* Center the paragraph text */
+  margin-top: 20px; /* Margin on top */
+  width: 100%; /* Ensure it spans the full width */
+  display: flex; /* Use flexbox for alignment */
+  justify-content: center; /* Center content horizontally */
+  gap: 5px; /* Add spacing between elements */
+}
+.p-register a { /* Unique class for login links */
+  color: #007bff; /* Link color */
+  text-decoration: none; /* Remove underline */
+}
+.p-register a:hover { /* Hover effect for login links */
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Even smaller screens (e.g., mobile) */
+@media screen and (max-width: 550px) {
+  .wrapper-register {
+    padding-top: 160px; 
+    height: 650px;
+  }
+}
