@@ -11,10 +11,22 @@ import { Canvas } from "@react-three/fiber";
 
 // Import the logo (if using src/assets)
 import logo from "../Hackanomics_logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   // Initial savings value
   const [savings, setSavings] = useState(1200);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const  Navigate = useNavigate();
+
+  // switching between admin and regular view
+  const handleSwitchView  = (view: string) => {
+    if (view === "admin") {
+      Navigate("/admin/dashboard"); // Redirect to Admin Dashboard
+    }else {
+      Navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -29,6 +41,34 @@ const Dashboard = () => {
           />
           <h1 className="text-2xl font-bold">Hackronomics</h1>
         </div>
+
+        {/* dropdown button */}
+        <div className="relative">
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+          >
+            Switch View ▼
+          </button>
+
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+              <button
+                onClick={() => handleSwitchView("user")}
+                className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
+              >
+                User Dashboard
+              </button>
+              <button
+                onClick={() => handleSwitchView("admin")}
+                className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
+              >
+                Admin Dashboard
+              </button>
+            </div>
+          )}
+        </div>
+
         <Button className="bg-blue-500 hover:bg-blue-700">Logout</Button>
       </header>
 
