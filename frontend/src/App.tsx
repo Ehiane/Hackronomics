@@ -3,8 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Dashboard from "./components/Dashboard";
 import Home from "./homePage/Home";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./homePage/LoginPage";
+import Register from "./homePage/Register";
 import ProtectedRoute from "./ProtectedRoute"; // Import new component
+import Footer from "./homePage/Footer";
+import AdminSidebar from "./Admin/AdminSidebar";
+import UserList from "./Admin/UserList";
+import AdminTransactions from "./Admin/AdminTransactions";
+import AdminSettings from "./Admin/AdminSettings";
+import AdminDashboard from "./Admin/AdminDashboard";
+import HeaderDashboard from "./pages/HeaderDashboard";
 
 const App = () => {
   return (
@@ -17,10 +25,36 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />}  />
+          
+
+          {/* <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} /> */}
+          {/* Admin Portal routes - Wrapped with sidebar */}
+        <Route
+          path='/admin/*'
+          element = {
+            <div className="bg-gray-100 min-h-screen flex flex-col">
+              <HeaderDashboard /> 
+               <div className="flex flex-1">
+                  <AdminSidebar />
+              <div className='flex-1 p-6'>
+                <Routes>
+                  <Route path='/dashboard' element={<AdminDashboard />}/>
+                  <Route path='/users' element={<UserList />}/>
+                  <Route path='/transactions' element={<AdminTransactions />}/>
+                  <Route path='/settings' element={<AdminSettings />}/>
+                </Routes>
+              </div>
+            </div>
+          </div>
+          }
+        />
         </Routes>
       </Router>
     </Auth0Provider>
+
+    
   );
 };
 

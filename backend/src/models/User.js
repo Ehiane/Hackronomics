@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
     DOB: { type: String, required: true },
     primaryLocation: { type: String },
     zipcode: { type: String },
+    // role: String, // 'admin' or 'user'
     savingsPlan: { type: mongoose.Schema.Types.ObjectId, ref: "SavingsPlan" },
     avatar: { type: mongoose.Schema.Types.ObjectId, ref: "Avatar" },
     friendsList: [{ type: String }],

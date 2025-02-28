@@ -1,6 +1,10 @@
 .footer {
-  background-color: #727fa8 ;  /* Light blue background color */
+  /* background-color: #727fa8 ;   */
+  /* Light blue background color */
   /* #2563EB; */
+  --bg-opacity: 1;
+  background-color: #2d3748;
+  background-color: rgba(45, 55, 72, var(--bg-opacity)) /* #2d3748 */;
   color: white; /* White text color */
   text-align: center; /* Center the text */
   padding: 1rem 0; /* Padding to give some space around the text */

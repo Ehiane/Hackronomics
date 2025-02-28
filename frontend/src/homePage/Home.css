@@ -4,8 +4,8 @@
   align-items: center; /* Align items vertically */
   justify-content: space-between; /* Separate text and image */
   padding: 2rem;
-  background-color: #252342;
-  /* background-color: white; */
+  /* background-color: #252342; */
+  background-color: #72afc2;
   height: 100vh; /* Full height of the viewport */
 }
 

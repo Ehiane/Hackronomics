@@ -4,7 +4,13 @@
   justify-content: space-between;
   align-items: center; /* Center vertically */
   padding: 0.5rem 2rem;
-  background-color: #727fa8;
+
+  /* background-color: #727fa8; */
+  --bg-opacity: 1;
+  background-color: #4299e1;
+  background-color: rgba(66, 153, 225, var(--bg-opacity)) /* #4299e1 */;
+
+
   height: 100px; /* Set a standard height */
   width: 100%; /* Ensure full width */
   box-sizing: border-box; /* Include padding and border in element's total width and height */

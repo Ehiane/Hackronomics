@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./homePage/LoginPage";
 
 const ProtectedRoute = ({ element }) => {
   const { isAuthenticated, isLoading } = useAuth0();

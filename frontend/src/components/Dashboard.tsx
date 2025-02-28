@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Card, { CardContent } from "./Card";
-import Button from "./Button";
 import { motion } from "framer-motion";
 import AIRecommendations from "./AIRecommendations";
 import ExpenseBreakdown from "./ExpenseBreakdown";
@@ -8,28 +6,16 @@ import WeeklySavings from "./WeeklySavings";
 import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
+import HeaderDashboard from "../pages/HeaderDashboard";
 
 const Dashboard = () => {
   // Initial savings value
   const [savings, setSavings] = useState(1200);
-  const logo = "/Hackanomics_logo.png";
-
+  
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-blue-600 text-white py-4 px-8 flex justify-between items-center">
-        {/* Add the logo */}
-        <div className="flex items-center space-x-4">
-          <img
-            src={logo} // Reference logo file
-            alt="Hackronomics Logo"
-            className="h-12 w-auto"
-          />
-          <h1 className="text-2xl font-bold">Hackronomics</h1>
-        </div>
-        <Button className="bg-blue-500 hover:bg-blue-700">Logout</Button>
-      </header>
-
+     {/* <HeaderDashboard/> */}
+     <HeaderDashboard showSwitchUser={false}/>
       {/* Dashboard Content */}
       <main className="p-6 flex-1 flex">
         {/* Sidebar with Avatar */}

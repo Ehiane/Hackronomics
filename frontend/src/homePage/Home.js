@@ -1,12 +1,12 @@
 import React from 'react';
 import './Home.css';
-import Navbar from '../homePage/Navbar'; // Ensure correct path
+import NavbarHome from './NavbarHome'; // Ensure correct path
 import Footer from '../homePage/Footer'; // Ensure correct path
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <NavbarHome />
       <section className="hero">
         {/* Left Side: Text and Get Started Box */}
         <div className="hero-text">
@@ -18,7 +18,7 @@ const Home = () => {
           </h3>
           <div className="getstartedsquare">
             <h3>Get Started</h3>
-            <a href="/register">
+            <a href="/signup">
               <button className="signup-button">Sign Up</button>
             </a>
             <a href="/login">
