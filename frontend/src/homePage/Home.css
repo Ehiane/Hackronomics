@@ -1,0 +1,108 @@
+/* Hero Section General Layout */
+.hero {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Separate text and image */
+  padding: 2rem;
+  /* background-color: #252342; */
+  background-color: #72afc2;
+  height: 100vh; /* Full height of the viewport */
+}
+
+/* Left Side (Text and Box) */
+.hero-text {
+  width: 50%;
+  text-align: center; /* Center-align the text */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  padding: 2rem;
+}
+.hero-text h1, .hero-text h3 {
+  color: white;
+  margin-bottom: 20px; /* Space between headings and box */
+}
+.hero-text h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+.hero-text h3 {
+  font-size: 20px;
+  margin-bottom: 30px; /* Space above the Get Started box */
+}
+
+/* Get Started Box Styling */
+.getstartedsquare {
+  border-radius: 20px;
+  max-width: 400px; /* Limit size */
+  max-height: 250px;
+  background-color: #67657a;
+  padding: 30px;
+  text-align: center;
+}
+.getstartedsquare h3 {
+  font-size: 150%;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Button Styles */
+.signup-button, .login-button {
+  background-color: #080e36; 
+  color: white;
+  font-size: 120%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin: 10px;
+}
+.signup-button:hover, .login-button:hover {
+  color: #cd7a61;
+}
+
+/* Right Side (Image Section) */
+.hero-image {
+  /* width: 50%;
+  height: 100%; */
+  width: 40%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-image img {
+  /* width: 100%;  */
+  width: 90%;
+  height: auto;
+  /* max-height: 80vh; */
+  max-height: 60vh; 
+  border-radius: 10px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    height: auto;
+    padding-top: 140px; 
+  }
+  .hero-text, .hero-image {
+    width: 100%;
+  }
+  .getstartedsquare {
+    padding: 20px;
+  }
+  .signup-button, .login-button {
+    font-size: 100%;
+    padding: 8px 16px;
+  }
+}
+
+/* Even smaller screens (e.g., mobile) */
+@media screen and (max-width: 550px) {
+  .hero {
+    padding-top: 140px; 
+  }
+}
