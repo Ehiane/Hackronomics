@@ -35,7 +35,7 @@ const App = () => {
           path='/admin/*'
           element = {
             <div className="bg-gray-100 min-h-screen flex flex-col">
-              <HeaderDashboard /> 
+              <HeaderDashboard showSwitchUser={false} /> 
                <div className="flex flex-1">
                   <AdminSidebar />
               <div className='flex-1 p-6'>
