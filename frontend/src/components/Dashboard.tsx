@@ -15,7 +15,8 @@ const Dashboard = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
      {/* <HeaderDashboard/> */}
-     <HeaderDashboard showSwitchUser={false}/>
+
+     <HeaderDashboard showSwitchUser={false}/> {/* ***!Important*** to enable admin user view, change this to false  */}
       {/* Dashboard Content */}
       <main className="p-6 flex-1 flex">
         {/* Sidebar with Avatar */}
