@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
     "@react-three/drei": "^9.121.5",
     "@react-three/fiber": "^8.17.14",
     "@shadcn/ui": "^0.0.4",
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@types/auth0-js": "^9.21.6",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.2",
     "tailwindcss": "^1.9.6"
