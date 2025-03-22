@@ -4,7 +4,6 @@
   align-items: center; /* Align items vertically */
   justify-content: space-between; /* Separate text and image */
   padding: 2rem;
-  /* background-color: #252342; */
   background-color: #72afc2;
   height: 100vh; /* Full height of the viewport */
 }
@@ -64,8 +63,6 @@
 
 /* Right Side (Image Section) */
 .hero-image {
-  /* width: 50%;
-  height: 100%; */
   width: 40%;
   height: auto;
   display: flex;

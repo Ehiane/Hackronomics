@@ -5,13 +5,9 @@
   justify-content: space-between;
   align-items: center; /* Center vertically */
   padding: 0.5rem 2rem;
-
-  /* background-color: #727fa8; */
   --bg-opacity: 1;
   background-color: #4299e1;
   background-color: rgba(66, 153, 225, var(--bg-opacity)) /* #4299e1 */;
-
-
   height: 100px; /* Set a standard height */
   width: 100%; /* Ensure full width */
   box-sizing: border-box; /* Include padding and border in element's total width and height */
@@ -38,7 +34,6 @@
 
 .logo {
   height: 60px; /* Resized logo */
-  /* margin-top: -10px; */
   margin-right: 10px;
 }
 
@@ -57,7 +52,6 @@
 .nav-links a {
   text-decoration: none;
   font-size: 27px; /* Set the same size as gciConnect */
-  /* color: #000; */
   color: white;
   font-weight: bold;
   transition: color 0.3s ease;
@@ -77,8 +71,6 @@
   background-color: #cd7a61; /* Keep the background Orange-ish on hover */
   color: black; /* Change text color to black on hover */
 }
-
-
 
 
 /* Responsive Design */
