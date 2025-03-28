@@ -18,7 +18,7 @@ const Home = () => {
           </h3>
           <div className="getstartedsquare">
             <h3>Get Started</h3>
-            <a href="/signup">
+            <a href="/register">
               <button className="signup-button">Sign Up</button>
             </a>
             <a href="/login">

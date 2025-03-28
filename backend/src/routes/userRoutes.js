@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, loginUser, getUserProfile, updateUserProfile, deleteUser } from "../controllers/userController.js";
+import { registerUser, loginUser, getUserProfile, updateUserProfile, deleteUser, logoutUser } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -17,5 +17,7 @@ router.put("/:userID", updateUserProfile);
 
 // Route to delete a user (admin-only)
 router.delete("/:userID",deleteUser);
+
+router.post("/logout", logoutUser); // Is it necessary?
 
 export default router;

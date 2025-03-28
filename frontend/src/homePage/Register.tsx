@@ -34,21 +34,69 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    if (
-      (formData.email === "test@example.com" && formData.password === "password123" && formData.role === "user") ||
-      (formData.email === "testadmin@example.com" && formData.password === "password123admin" && formData.role === "admin")
-    ) {
-      alert("Registration successful!");
-      navigate("/login");
-    } else if (formData.email === "test@example.com" && formData.role === "admin") {
-      alert("Not Authorized as admin");
-    } else {
-      alert("Something went wrong. Try again.");
-    }
-  };
+  //   if (
+  //     (formData.email === "test@example.com" && formData.password === "password123" && formData.role === "user") ||
+  //     (formData.email === "testadmin@example.com" && formData.password === "password123admin" && formData.role === "admin")
+  //   ) {
+  //     alert("Registration successful!");
+  //     navigate("/login");
+  //   } else if (formData.email === "test@example.com" && formData.role === "admin") {
+  //     alert("Not Authorized as admin");
+  //   } else {
+  //     alert("Something went wrong. Try again.");
+  //   }
+  // };
+
+  // Add this to the existing handleSubmit function in Register.tsx
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  if (
+    (formData.email === "test@example.com" && formData.password === "password123" && formData.role === "user") ||
+    (formData.email === "testadmin@example.com" && formData.password === "password123admin" && formData.role === "admin")
+  ) {
+    alert("Registration successful!");
+    navigate("/login");
+  } else if (formData.email === "test@example.com" && formData.role === "admin") {
+    alert("Not Authorized as admin");
+  } else {
+    alert("Something went wrong. Try again.");
+  }
+
+  try {
+    const response = await fetch("/api/register", {
+    //const response = await fetch("/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        password: formData.password,
+        DOB: "2000-01-01", // Set a dummy/default DOB
+        primaryLocation: "Unknown",
+        zipcode: "00000",
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) throw new Error(data.message || "Registration failed");
+
+    alert("Registration successful!");
+    navigate("/login");
+  } catch (err: any) {
+    alert(err.message);
+  }
+};
 
   return (
     <>

@@ -36,6 +36,7 @@ export const registerUser = async (req, res) => {
             DOB,
             primaryLocation,
             zipcode,
+            role: role || "user", 
             friendsList: [],
             avatar: null,
             savingsPlan: null,
@@ -50,6 +51,7 @@ export const registerUser = async (req, res) => {
                 DOB: user.DOB,
                 primaryLocation: user.primaryLocation,
                 zipcode: user.zipcode,
+                role: user.role,
                 token: generateToken(user.id)
             });
         } else {
@@ -74,6 +76,7 @@ export const loginUser = async (req, res) => {
                 _id: user.id,
                 name: user.name,
                 email: user.email,
+                role: user.role,
                 token: generateToken(user.id),
             });
         } else {
@@ -178,3 +181,7 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 };
+
+export const logoutUser = (req, res) => {
+    res.status(200).json({ message: "Logged out successfully" });
+  };
