@@ -1,37 +1,24 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import LoginPage from "./homePage/LoginPage";
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ element }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
+/**
+ * @param {Object} props
+ * @param {JSX.Element} props.element 
+ * @param {string[]} [props.allowedRoles] 
+ */
+const ProtectedRoute = ({ element, allowedRoles }) => {
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role'); // role is stored on login
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (!token) {
+    return <Navigate to="/login" />;
   }
 
-  return isAuthenticated ? element : <LoginPage />;
+  if (allowedRoles && !allowedRoles.includes(role)) {
+    return <Navigate to="/" />;
+  }
+
+  return element;
 };
 
 export default ProtectedRoute;
-
-
-
-// import React from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
-// import LoginPage from "../pages/LoginPage"; // Ensure the correct path
-
-// interface ProtectedRouteProps {
-//   element: JSX.Element;
-// }
-
-// const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
-//   const { isAuthenticated, isLoading } = useAuth0();
-
-//   if (isLoading) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return isAuthenticated ? element : <LoginPage />;
-// };
-
-// export default ProtectedRoute;

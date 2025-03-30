@@ -19,11 +19,12 @@ const NavbarHome = ({ showHomeLink }) => {
       <div className="navbar-right">
         <ul className="nav-links">
           {showHomeLink && (
-            <li><NavLink to="/" className="navbar-item" activeClassName="active">Home</NavLink></li>   
+            <li><NavLink to="/" className={({ isActive }) => isActive ? "navbar-item active" : "navbar-item"}>
+                Home
+               </NavLink>
+            </li>
+
           )}
-          {/* <li><NavLink to="/contact" className="navbar-item" activeClassName="active">Contact Us</NavLink></li>
-          <li><NavLink to="/about" className="navbar-item" activeClassName="active">About</NavLink></li> */}
-          {/* <li><NavLink to="/login" className="navbar-item login-button" activeClassName="active">Log in</NavLink></li> */}
         </ul>
       </div>
 

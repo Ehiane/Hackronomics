@@ -4,6 +4,10 @@ import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import userRoutes from "./routes/userRoutes.js";
 
+import cors from "cors";
+
+
+//const cors = require('cors');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -11,6 +15,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 
 // ✅ MongoDB-based authentication routes
 //app.use("/api/users", userRoutes);
@@ -38,10 +47,10 @@ app.get("/logout", (req, res) => {
 });
 
 // ✅ Serve frontend
-app.use(express.static(path.join(__dirname, "../auth0-login-demo/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../auth0-login-demo/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../auth0-login-demo/build")));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../auth0-login-demo/build/index.html"));
+// });
 
 export default app;
 

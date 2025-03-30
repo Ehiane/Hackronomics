@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface User {
-    id: string;
+    //id: string;
+    _id: string; // What I changed: from id to _id
     name: string;
     email: string;
     isActive: boolean;
@@ -9,22 +10,46 @@ interface User {
 }
 
 
-const dummyUsers: User[] = [
-    { id: "1", name: "John Doe", email: "john@example.com", isActive: true, balance: 2450 },
-    { id: "2", name: "Sarah Johnson", email: "sarah@example.com", isActive: true, balance: 3200 },
-    { id: "3", name: "Michael Brown", email: "michael@example.com", isActive: false, balance: 120 },
-    { id: "4", name: "Emily Davis", email: "emily@example.com", isActive: true, balance: 1850 },
-    { id: "5", name: "Robert Wilson", email: "robert@example.com", isActive: true, balance: 4100 },
-];
-
-
 const UserList = () => {
-    const [users, setUsers] = useState<User[]>(dummyUsers);
+    const [users, setUsers] = useState<User[]>([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+          const token = localStorage.getItem("token");
+    
+          try {
+            const response = await fetch("http://localhost:5001/api/admin/users", {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            });
+    
+            if (response.ok) {
+              const data = await response.json();
+              const formattedUsers = data.map((u: any) => ({
+                ...u,
+                isActive: true, // We can improve this later with real active/inactive logic
+                balance: 0,     // Or fetch this from a related model
+              }));
+              setUsers(formattedUsers);
+            } else {
+              console.error("Failed to fetch users");
+            }
+          } catch (err) {
+            console.error("Error:", err);
+          }
+        };
+    
+        fetchUsers();
+      }, []);
 
     const toggleUsersStatus = (id: string) => {
-        setUsers(users.map(user => 
-            user.id === id ? {...user, isActive: !user.isActive} : user
-        )); 
+        setUsers((prev) =>
+          prev.map((user) =>
+            user._id === id ? { ...user, isActive: !user.isActive } : user
+          )
+        );
     };
 
     return (
@@ -42,7 +67,7 @@ const UserList = () => {
                 </thead>
                 <tbody>
                     {users.map((user) => (
-                        <tr key={user.id} className="border-b">
+                        <tr key={user._id} className="border-b">
                             <td className="p-2">{user.name}</td>
                             <td className="p-2">{user.email}</td>
                             <td className="p-2">
@@ -55,7 +80,7 @@ const UserList = () => {
                             <td className="p-2">${user.balance.toFixed(2)}</td>
                             <td className="p-2">
                                 <button
-                                    onClick={() => toggleUsersStatus(user.id)}
+                                    onClick={() => toggleUsersStatus(user._id)}
                                     className={`px-3 py-1 text-white rounded ${
                                         user.isActive ? "bg-red-500" : "bg-green-500"
                                     }`}

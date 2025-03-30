@@ -6,13 +6,14 @@ const UserSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    DOB: { type: String, required: true },
+    // DOB: { type: String, required: true },
+    DOB: { type: String },
     primaryLocation: { type: String },
     zipcode: { type: String },
     role: { type: String, enum: ["admin", "user"], default: "user" }, 
     savingsPlan: { type: mongoose.Schema.Types.ObjectId, ref: "SavingsPlan" },
     avatar: { type: mongoose.Schema.Types.ObjectId, ref: "Avatar" },
-    friendsList: [{ type: String }],
+    friendsList: [{ type: String }], 
     },
     { timestamps: true }
 );
