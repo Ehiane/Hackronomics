@@ -1,7 +1,10 @@
 import express from "express";
-import { registerUser, loginUser, getUserProfile, updateUserProfile, deleteUser, logoutUser } from "../controllers/userController.js";
+import { registerUser, loginUser, getUserProfile, updateUserProfile, deleteUser, logoutUser, getAllUsers } from "../controllers/userController.js";
 
 const router = express.Router();
+
+// For the admin page to see all the users (role: user)
+router.get("/admin/users", getAllUsers)
 
 // Route to register a new user
 router.post("/register", registerUser);

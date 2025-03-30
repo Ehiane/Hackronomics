@@ -11,32 +11,11 @@ const LoginPage = () => {
   const [error, setError] = useState(""); // To show error if login fails
   const navigate = useNavigate(); // Hook to navigate after login
 
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-
-  //   if (email === "test@example.com" && password === "password123") {
-  //     navigate("/dashboard");
-  //   } else if (email === "testadmin@example.com" && password === "password123admin") {
-  //     navigate("/admin/dashboard");
-  //   } else {
-  //     setError("Invalid email or password");
-  //   }
-  // };
-
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (email === "test@example.com" && password === "password123") {
-      navigate("/dashboard");
-    } else if (email === "testadmin@example.com" && password === "password123admin") {
-      navigate("/admin/dashboard");
-    } else {
-      setError("Invalid email or password");
-    }
+    e.preventDefault(); // Prevent default form submission
   
     try {
-      const response = await fetch("/api/login", {
-      //const response = await fetch("/api/users/login", {
+      const response = await fetch("http://localhost:5001/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -44,11 +23,17 @@ const LoginPage = () => {
   
       const data = await response.json();
   
-      if (!response.ok) throw new Error(data.message || "Login failed");
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
   
-      // Save token and redirect based on role
+      // Save token to localStorage
       localStorage.setItem("token", data.token);
+     // localStorage.setItem("userID", data._id); 
+      localStorage.setItem("userID", data.userID);
+      localStorage.setItem("role", data.role);
   
+      // Navigate based on role
       if (data.role === "admin") {
         navigate("/admin/dashboard");
       } else {
@@ -57,7 +42,7 @@ const LoginPage = () => {
     } catch (err: any) {
       setError(err.message);
     }
-  };  
+  };
 
   return (
     <>

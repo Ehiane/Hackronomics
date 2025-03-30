@@ -4,12 +4,10 @@ import NavbarHome from "./NavbarHome";
 import Footer from "./Footer";
 
 interface FormData {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   phoneNumber: string;
   password: string;
-  confirmPassword: string;
   role: string;
 }
 
@@ -18,12 +16,10 @@ const Register = () => {
   const logo = "/Hackanomics_logo.png";
 
   const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phoneNumber: "",
     password: "",
-    confirmPassword: "",
     role: "",
   });
 
@@ -34,69 +30,42 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //   if (
-  //     (formData.email === "test@example.com" && formData.password === "password123" && formData.role === "user") ||
-  //     (formData.email === "testadmin@example.com" && formData.password === "password123admin" && formData.role === "admin")
-  //   ) {
-  //     alert("Registration successful!");
-  //     navigate("/login");
-  //   } else if (formData.email === "test@example.com" && formData.role === "admin") {
-  //     alert("Not Authorized as admin");
-  //   } else {
-  //     alert("Something went wrong. Try again.");
-  //   }
-  // };
+    if (formData.email === "test@example.com" && formData.role === "admin") {
+     alert("Not Authorized as admin");
+     return;
+    }
 
-  // Add this to the existing handleSubmit function in Register.tsx
+    try {
+      const response = await fetch("http://localhost:5001/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          // DOB: "2000-01-01",
+          // primaryLocation: "Unknown",
+          // zipcode: "00000",
+          role: formData.role,
+        }), // End of the body
+      }); // End of feetch
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+      const data = await response.json();
 
-  if (formData.password !== formData.confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
+      if (!response.ok) throw new Error(data.message || "Registration failed");
 
-  if (
-    (formData.email === "test@example.com" && formData.password === "password123" && formData.role === "user") ||
-    (formData.email === "testadmin@example.com" && formData.password === "password123admin" && formData.role === "admin")
-  ) {
-    alert("Registration successful!");
-    navigate("/login");
-  } else if (formData.email === "test@example.com" && formData.role === "admin") {
-    alert("Not Authorized as admin");
-  } else {
-    alert("Something went wrong. Try again.");
-  }
+      alert("Registration successful!");
+      navigate("/login");
+    } // End of try
 
-  try {
-    const response = await fetch("/api/register", {
-    //const response = await fetch("/api/users/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: `${formData.firstName} ${formData.lastName}`,
-        email: formData.email,
-        password: formData.password,
-        DOB: "2000-01-01", // Set a dummy/default DOB
-        primaryLocation: "Unknown",
-        zipcode: "00000",
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) throw new Error(data.message || "Registration failed");
-
-    alert("Registration successful!");
-    navigate("/login");
-  } catch (err: any) {
-    alert(err.message);
-  }
-};
+    catch (err: any) 
+    {
+      alert(err.message);
+    } // End of catch
+  }; // End of  handleSubmit
 
   return (
     <>
@@ -118,20 +87,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 type="text"
-                name="firstName"
-                value={formData.firstName}
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="First Name"
-                className="input-style"
-              />
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                required
-                placeholder="Last Name"
+                placeholder="Full Name"
                 className="input-style"
               />
               <input
@@ -159,15 +119,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                 onChange={handleChange}
                 required
                 placeholder="Password"
-                className="input-style"
-              />
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                placeholder="Confirm Password"
                 className="input-style"
               />
               <select

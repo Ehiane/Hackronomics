@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AIRecommendations from "./AIRecommendations";
 import ExpenseBreakdown from "./ExpenseBreakdown";
@@ -8,15 +8,55 @@ import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
 import HeaderDashboard from "../pages/HeaderDashboard";
 
+interface User {
+  name: string;
+  email: string;
+  role: string;
+  DOB?: string;
+  primaryLocation?: string;
+  zipcode?: string;
+  // Add other fields as needed
+}
+
+
 const Dashboard = () => {
-  // Initial savings value
-  const [savings, setSavings] = useState(1200);
+  const [savings, setSavings] = useState(1200); // You can adjust this later
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userID"); 
   
+      if (!token || !userId) return;
+  
+      try {
+        const response = await fetch(`http://localhost:5001/api/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          console.error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+  
+    fetchUserData();
+  }, []);
+  
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-     {/* <HeaderDashboard/> */}
+      <HeaderDashboard showSwitchUser={false} />
 
-     <HeaderDashboard showSwitchUser={false}/> {/* ***!Important*** to enable admin user view, change this to false  */}
       {/* Dashboard Content */}
       <main className="p-6 flex-1 flex">
         {/* Sidebar with Avatar */}
@@ -26,8 +66,12 @@ const Dashboard = () => {
               <Avatar3D savings={savings} />
             </Canvas>
           </div>
-          <h2 className="text-xl font-semibold mt-4">User Name</h2>
-          <p className="text-gray-500">Placeholder Avatar</p>
+          <h2 className="text-xl font-semibold mt-4">
+            {user ? user.name : "Loading..."}
+          </h2>
+          <p className="text-gray-500">
+            {user ? `Role: ${user.role}` : "Placeholder Avatar"}
+          </p>
         </div>
 
         {/* Main Dashboard Cards */}
