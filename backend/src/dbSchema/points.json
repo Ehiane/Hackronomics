@@ -1,0 +1,19 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": [
+            "userID",
+            "points"
+        ],
+        "properties": {
+            "userID": {
+                "bsonType": "string",
+                "description": "Unique identifier for the user"
+            },
+            "points": {
+                "bsonType": "int",
+                "description": "Total points earned by the user"
+            }
+        }
+    }
+}
