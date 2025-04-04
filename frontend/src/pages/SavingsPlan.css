@@ -66,4 +66,38 @@
   .back-button:hover {
     background-color: #1e40af; /* Tailwind's blue-700 */
   }
+
+  .savings-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .savings-form label {
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  .savings-form input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    width: 200px;
+  }
+  
+  .savings-form button {
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .savings-form button:hover {
+    background-color: #2563eb;
+  }
   
