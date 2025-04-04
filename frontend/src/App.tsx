@@ -16,6 +16,7 @@ import HeaderDashboard from "./pages/HeaderDashboard";
 import Transactions from "./pages/Transactions";
 import SavingsPlan from "./pages/SavingsPlan";
 import AIInsights from "./pages/Insights";
+import Expenses from "./pages/Expenses";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/transactions" element={<Transactions />} />
         <Route path="/savings-plan" element={<SavingsPlan />} />
         <Route path="/insights" element={<AIInsights />} />
+        <Route path="/expenses" element={<Expenses />} />
 
         {/* Admin section (protected) */}
         <Route
