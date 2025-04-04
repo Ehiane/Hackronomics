@@ -30,6 +30,14 @@
         "bsonType": "string",
         "description": "User's password"
       },
+      "phoneNumber": {
+        "bsonType": "string",
+        "description": "User's phone number"
+      },
+      "role" :{
+        "bsonType": "string",
+        "description": "User's role in the system (e.g., admin or user)"
+      },
       "DOB": {
         "bsonType": "date",
         "description": "User's date of birth"

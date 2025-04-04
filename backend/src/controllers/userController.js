@@ -15,8 +15,8 @@ const generateToken = (id) => {
  */
 export const registerUser = async (req, res) => {
     try {
-        const { name, email, password, DOB, primaryLocation, zipcode } = req.body;
-
+       const { name, email, password, DOB, primaryLocation, zipcode, role } = req.body;
+    
         // Check if user already exists
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -29,13 +29,15 @@ export const registerUser = async (req, res) => {
 
         // Create new user
         const user = await User.create({
-            userID: new mongoose.Types.ObjectId(), // ✅ Mongoose is now defined
+            userID: new mongoose.Types.ObjectId(), 
             name,
             email,
             password: hashedPassword,
             DOB,
             primaryLocation,
             zipcode,
+            role: role || "user", 
+            //role: req.body.role || "user",
             friendsList: [],
             avatar: null,
             savingsPlan: null,
@@ -44,12 +46,14 @@ export const registerUser = async (req, res) => {
         if (user) {
             console.log("Valid user data");
             res.status(201).json({
-                _id: user.id,
+               // _id: user.id,
+                userID: user.userID, 
                 name: user.name,
                 email: user.email,
                 DOB: user.DOB,
                 primaryLocation: user.primaryLocation,
                 zipcode: user.zipcode,
+                role: user.role,
                 token: generateToken(user.id)
             });
         } else {
@@ -71,9 +75,13 @@ export const loginUser = async (req, res) => {
 
         if (user && (await bcrypt.compare(password, user.password))) {
             res.json({
-                _id: user.id,
+                // firstName: user.firstName,
+                // lastName: user.lastName,
+                // _id: user.id,
+                userID: user.userID,
                 name: user.name,
                 email: user.email,
+                role: user.role,
                 token: generateToken(user.id),
             });
         } else {
@@ -106,6 +114,18 @@ export const getUserProfile = async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 };
+
+export const getAllUsers = async (req, res) => {
+    try {
+      const users = await User.find({ role: "user" }).select("-password");
+      res.status(200).json(users);
+    } 
+    catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).json({ message: "Server error" });
+    }
+  };
+  
 
 /**
  * @desc    Update user profile by userID
@@ -141,7 +161,7 @@ export const updateUserProfile = async (req, res) => {
                 email: updatedUser.email,
                 DOB: updatedUser.DOB,
                 primaryLocation: updatedUser.primaryLocation,
-                zipcode: updatedUser.zipcode,
+                zipcode: updatedUser.zipcode
             });
         } else {
             console.warn(`User not found for update: ${req.params.userID}`);
@@ -178,3 +198,7 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error });
     }
 };
+
+export const logoutUser = (req, res) => {
+    res.status(200).json({ message: "Logged out successfully" });
+  };

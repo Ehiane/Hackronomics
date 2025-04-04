@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import Card, { CardContent } from "./Card";
-import Button from "./Button";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AIRecommendations from "./AIRecommendations";
 import ExpenseBreakdown from "./ExpenseBreakdown";
@@ -8,29 +6,56 @@ import WeeklySavings from "./WeeklySavings";
 import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
+import HeaderDashboard from "../pages/HeaderDashboard";
 
-// Import the logo (if using src/assets)
-import logo from "../Hackanomics_logo.png";
+interface User {
+  name: string;
+  email: string;
+  role: string;
+  DOB?: string;
+  primaryLocation?: string;
+  zipcode?: string;
+  // Add other fields as needed
+}
+
 
 const Dashboard = () => {
-  // Initial savings value
-  const [savings, setSavings] = useState(1200);
+  const [savings, setSavings] = useState(1200); // You can adjust this later
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userID"); 
+  
+      if (!token || !userId) return;
+  
+      try {
+        const response = await fetch(`http://localhost:5001/api/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        } else {
+          console.error("Failed to fetch user data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+  
+    fetchUserData();
+  }, []);
+  
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-blue-600 text-white py-4 px-8 flex justify-between items-center">
-        {/* Add the logo */}
-        <div className="flex items-center space-x-4">
-          <img
-            src={logo} // Reference logo file
-            alt="Hackronomics Logo"
-            className="h-12 w-auto"
-          />
-          <h1 className="text-2xl font-bold">Hackronomics</h1>
-        </div>
-        <Button className="bg-blue-500 hover:bg-blue-700">Logout</Button>
-      </header>
+      <HeaderDashboard showSwitchUser={false} />
 
       {/* Dashboard Content */}
       <main className="p-6 flex-1 flex">
@@ -41,8 +66,12 @@ const Dashboard = () => {
               <Avatar3D savings={savings} />
             </Canvas>
           </div>
-          <h2 className="text-xl font-semibold mt-4">User Name</h2>
-          <p className="text-gray-500">Placeholder Avatar</p>
+          <h2 className="text-xl font-semibold mt-4">
+            {user ? user.name : "Loading..."}
+          </h2>
+          <p className="text-gray-500">
+            {user ? `Role: ${user.role}` : "Placeholder Avatar"}
+          </p>
         </div>
 
         {/* Main Dashboard Cards */}
