@@ -2,7 +2,7 @@
 backend/node_modules/
 backend/.env
 backend/src/.env
-backend/dist/
+
 
 # Ignore frontend-specific files (if applicable)
 frontend/node_modules/
