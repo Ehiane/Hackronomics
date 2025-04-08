@@ -1,0 +1,123 @@
+.expenses-container {
+    background-color: #f9fafc;
+    min-height: 100vh;
+    padding: 40px;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.expenses-header {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.expenses-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.expenses-header p {
+    color: #777;
+    margin: 4px 0;
+}
+
+.total-spent {
+    font-weight: bold;
+    color: #222;
+    font-size: 1.1rem;
+    display: block;
+    margin-top: 8px;
+}
+
+.expenses-list {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.expense-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-label {
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 4px;
+}
+
+.progress-bar-wrapper {
+    position: relative;
+    background: #eee;
+    height: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.4s ease;
+}
+
+.amount {
+    position: absolute;
+    right: 8px;
+    top: -22px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.top-expenses {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.top-expenses h2 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.top-expenses ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.top-expenses li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.bold-amount {
+    font-weight: 600;
+}
+
+.expenses-back-button {
+    align-self: flex-start;
+    margin-bottom: -10px;
+    margin-left: 6px;
+    padding: 8px 14px;
+    background-color: #6366f1; /* Indigo */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+  
+.expenses-back-button:hover {
+background-color: #4f46e5;
+}
