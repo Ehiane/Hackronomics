@@ -4,36 +4,37 @@ import NavbarHome from "./NavbarHome";
 import Footer from "./Footer";
 
 const LoginPage = () => {
-  const logo = "/Hackanomics_logo.png"; // get the logo
+  const logo = "/Hackanomics_logo.png";
   const loginpic = "./loginpic.jpeg";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // To show error if login fails
-  const navigate = useNavigate(); // Hook to navigate after login
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
-  
+    e.preventDefault();
+
     try {
       const response = await fetch("http://localhost:5001/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.message || "Login failed");
       }
-  
-      // Save token to localStorage
-      localStorage.setItem("token", data.token);
-     // localStorage.setItem("userID", data._id); 
-      localStorage.setItem("userID", data.userID);
-      localStorage.setItem("role", data.role);
-  
-      // Navigate based on role
+
+      // ✅ Save important info in localStorage
+      localStorage.setItem("token", data.token); // for authenticated requests
+      localStorage.setItem("userID", data.userID); // needed for querying user-based data
+      localStorage.setItem("role", data.role); // useful for role-based routing
+
+      console.log("🔐 Logged in:", data);
+
+      // ✅ Navigate user based on their role
       if (data.role === "admin") {
         navigate("/admin/dashboard");
       } else {
@@ -41,19 +42,19 @@ const LoginPage = () => {
       }
     } catch (err: any) {
       setError(err.message);
+      console.error("Login error:", err);
     }
   };
 
   return (
     <>
       <NavbarHome showHomeLink={true} />
-      <div className="relative h-screen"> 
+      <div className="relative h-screen">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${loginpic})` }} >
-        </div>
- 
-        {/* Centered login form */}
+          style={{ backgroundImage: `url(${loginpic})` }}
+        ></div>
+
         <div className="relative flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
             <div className="flex justify-center mb-6">
@@ -97,6 +98,7 @@ const LoginPage = () => {
                 Sign In
               </button>
             </form>
+
             <div className="mt-4 text-center">
               <Link to="/forgot-password" className="text-sm text-blue-600 hover:text-blue-500">
                 Forgot Password?
