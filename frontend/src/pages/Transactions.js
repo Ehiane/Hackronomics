@@ -45,6 +45,7 @@ const TransactionsPage = () => {
 
         parseCSV(file, async (parsedData) => {
             try {
+                console.log("Csv File accepted")
                 const response = await API.post("/transactions/bulk", { transactions: parsedData, userID });
                 setTransactions((prev) => [...prev, ...response.data]);
                 setMode("");
