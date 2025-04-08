@@ -45,3 +45,38 @@ export const getTransactionsByUser = async (req, res) => {
         res.status(500).json({error: "Failed to retrieve transactions"});
     }
 }
+
+export const bulkCreateTransactions = async (req, res) => {
+    try {
+        const transactions = req.body; // assume array of parsed transactions
+        if (!Array.isArray(transactions)) {
+            return res.status(400).json({ error: "Expected an array of transactions" });
+        }
+
+        // validate each item (or use a schema validator)
+        const invalidItems = transactions.filter(tx => {
+            return (
+            !tx.transactionID ||
+            typeof tx.amountSpent !== "number" ||
+            !tx.transactionType ||
+            !tx.transactionDate ||
+            !tx.description ||
+            !tx.category ||
+            !tx.userID ||
+            !tx.Location ||
+            !tx.Location.city ||
+            !tx.Location.state ||
+            !tx.Location.zipcode
+            );
+        });
+    
+        if (invalidItems.length > 0) {
+            return res.status(400).json({ error: "Some transactions are invalid", invalidItems });
+        }
+        const created = await Transaction.insertMany(transactions);
+        res.status(201).json({ message: "Transactions added", count: created.length });
+    } catch (err) {
+        console.error("Bulk upload failed", err);
+        res.status(500).json({ error: "Bulk upload failed" });
+    }
+};

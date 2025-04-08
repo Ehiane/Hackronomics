@@ -20,6 +20,7 @@ interface User {
 }
 
 const Dashboard = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();

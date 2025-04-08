@@ -92,3 +92,80 @@
     font-size: 0.95rem;
     color: #374151;
   }
+
+  .transaction-form {
+    background: #fff;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .transaction-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  
+  .transaction-form input,
+  .transaction-form select {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .submit-btn {
+    margin-top: 1.2rem;
+    background: linear-gradient(to right, #16a34a, #4ade80);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(to right, #15803d, #22c55e);
+  }
+  
+  .csv-upload-container {
+  background: #ffffff;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.csv-upload-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.csv-input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: linear-gradient(to right, #15803d, #22c55e);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.csv-input:hover {
+  cursor: pointer;
+}
+
+.csv-hint {
+  font-size: 0.95rem;
+  color: green;
+}
