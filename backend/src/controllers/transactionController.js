@@ -1,6 +1,7 @@
 import { error } from "console";
 import Transaction from "../models/Transaction.js";
 import { transactionImprovement } from "../routes/TransactionAI.js"; // Import AI function
+import { suggestCategory} from "../routes/CategoryAI.js"
 
 export const createTransaction = async (req, res) => {
     try {
@@ -11,12 +12,20 @@ export const createTransaction = async (req, res) => {
             return;
         }
 
-        // Use AI only if category is missing
-        if (!transactionData.category)
+        // // Use AI only if category is missing
+        if (transactionData.category == null)
         {
-            const improvedData = await transactionImprovement(transactionData);
-            Object.assign(transactionData, improvedData); // merge AI-suggested fields
+            // const improvedData = await transactionImprovement(transactionData);
+            const AI_Suggested_Category = await suggestCategory(transactionData);
+            // Parse the string into a JS object if needed
+            const parsedCategory = typeof AI_Suggested_Category === "string"
+            ? JSON.parse(AI_Suggested_Category)
+            : AI_Suggested_Category;
+
+            transactionData.category = `[AI]: ${parsedCategory.aiCategory}`;
+            console.log("AI suggested: ", transactionData.category);
         }
+
 
         const newTransaction = new Transaction(transactionData);
         await newTransaction.save();
@@ -24,7 +33,7 @@ export const createTransaction = async (req, res) => {
         res.status(201).json({ newTransaction });
     } catch (error) {
         console.error("Error generating transaction:", error);
-        res.status(500).json({ error: "Failed to generate transaction advice" });
+        res.status(500).json({ error: "Failed to generate transaction record" });
     }
 };
 

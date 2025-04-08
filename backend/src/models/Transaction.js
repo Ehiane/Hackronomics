@@ -18,7 +18,7 @@ const TransactionSchema = new mongoose.Schema({
     merchantType: {type: String, required: true}, // Fast Food, Grocery, etc.
 
     // AI - generated categories (through a microservice)
-    category: {type: String, required: true},
+    category: {type: String},
 
 });
 export default mongoose.model("Transaction", TransactionSchema);
