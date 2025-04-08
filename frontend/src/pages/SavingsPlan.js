@@ -70,7 +70,7 @@ const SavingsPlan = () => {
 
     return (
     <div className="savings-container">
-        <button onClick={() => navigate("/dashboard")} className="back-button">
+        <button onClick={() => navigate("/dashboard")} className="savings-plan-back-button">
         ← Back to Dashboard
         </button>
 

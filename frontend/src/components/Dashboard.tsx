@@ -77,16 +77,16 @@ const Dashboard = () => {
 
         {/* Main Dashboard Cards */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div whileHover={{ scale: 1.05 }} onClick={() => navigate("/transactions")} className="cursor-pointer">
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/transactions")} className="cursor-pointer">
             <BalanceCard />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} onClick={() => navigate("/savings-plan")} className="cursor-pointer">
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/savings-plan")} className="cursor-pointer">
             <WeeklySavings />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} onClick={() => navigate("/expenses")} className="cursor-pointer">
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/expenses")} className="cursor-pointer">
             <ExpenseBreakdown />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }} onClick={() => navigate("/insights")} className="cursor-pointer">
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/insights")} className="cursor-pointer">
             <AIRecommendations />
           </motion.div>
         </div>

@@ -107,17 +107,18 @@
     align-self: flex-start;
     margin-bottom: -10px;
     margin-left: 6px;
-    padding: 8px 14px;
-    background-color: #6366f1; /* Indigo */
+    padding: 14px 19px;
+    background: linear-gradient(to right, #2994e0, #023bd6);
     color: white;
     border: none;
     border-radius: 8px;
     font-size: 0.95rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
 }
-  
+
 .expenses-back-button:hover {
-background-color: #4f46e5;
+    box-shadow: 0 4px 6px rgba(13, 142, 241, 0.734);
+    transform: scale(1.085);
 }

@@ -26,15 +26,16 @@
   border: none;
   color: white;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 14px 19px;
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease;
+  transition: transform 0.3s ease-in-out;
 }
 
 .back-button:hover {
-  opacity: 0.85;
+    box-shadow: 0 4px 6px rgba(241, 13, 199, 0.37);
+    transform: scale(1.085);
 }
 
 .glow-star {
@@ -92,18 +93,3 @@
   color: #374151;
 }
 
-.back-button {
-  margin-top: 2rem;
-  padding: 0.75rem 1.5rem;
-  background-color: #7c3aed;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.back-button:hover {
-  background-color: #6d28d9;
-}
