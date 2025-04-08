@@ -1,6 +1,6 @@
 // src/pages/AIInsights.js
-import React from "react";
 import "./AIInsights.css";
+import { useNavigate } from "react-router-dom";
 // import glowingStar from "../assets/glowing-star.png"; // Add your star image in assets
 
 const insights = [
@@ -27,21 +27,27 @@ const insights = [
 ];
 
 const AIInsights = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="insights-container">
       {/* Hero Section */}
         <div className="insights-hero">
-            <img
-        src="/icons8-ai-stars.gif"
-        alt="Glowing AI Star"
-        className="glow-star"
-        />
+        <button
+          className="back-button"
+          onClick={() => navigate("/dashboard")}
+        >
+          ⬅ Back
+        </button>
+            
 
-        <h1>Personalized AI Insights</h1>
-        <p>
-          Let AI guide your financial journey with tailored advice based on your
-          habits.
-        </p>
+        <div className="hero-text">
+          <h1>Personalized AI Insights</h1>
+          <p>
+            Let AI guide your financial journey with tailored advice based on your
+            habits.
+          </p>
+        </div>
       </div>
 
       {/* Insights Grid */}

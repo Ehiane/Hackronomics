@@ -19,7 +19,6 @@ interface User {
   // Add other fields as needed
 }
 
-
 const Dashboard = () => {
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);

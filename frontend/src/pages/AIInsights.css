@@ -3,78 +3,107 @@
     min-height: 100vh;
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
+}
+  
+.insights-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+.back-button:hover {
+  opacity: 0.85;
+}
+
+.glow-star {
+  width: 48px;
+  height: 48px;
+}
+
+.hero-text h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  max-width: 500px;
+}
+
+
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 5px #a855f7);
   }
-  
-  .insights-hero {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: linear-gradient(to right, #a855f7, #7c3aed);
-    border-radius: 20px;
-    color: white;
-    margin-bottom: 2rem;
-    position: relative;
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  100% {
+    filter: drop-shadow(0 0 20px #a855f7);
   }
-  
-  .glow-star {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 1rem;
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-  
-  @keyframes pulse-glow {
-    0% {
-      filter: drop-shadow(0 0 5px #a855f7);
-    }
-    100% {
-      filter: drop-shadow(0 0 20px #a855f7);
-    }
-  }
-  
-  
-  .insights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .insight-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease;
-  }
-  
-  .insight-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .insight-card h2 {
-    font-size: 1.2rem;
-    color: #4c1d95;
-    margin-bottom: 0.5rem;
-  }
-  
-  .insight-card p {
-    color: #374151;
-  }
-  
-  .back-button {
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #7c3aed;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .back-button:hover {
-    background-color: #6d28d9;
-  }
-  
+}
+
+.insights-grid {
+  margin-top: 2.5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.insight-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-5px);
+}
+
+.insight-card h2 {
+  font-size: 1.2rem;
+  color: #4c1d95;
+  margin-bottom: 0.5rem;
+}
+
+.insight-card p {
+  color: #374151;
+}
+
+.back-button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #6d28d9;
+}
