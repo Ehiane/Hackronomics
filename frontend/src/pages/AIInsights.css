@@ -1,0 +1,95 @@
+.insights-container {
+    background-color: #f3f4f6;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+  
+.insights-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  background: linear-gradient(to right, #8e2de2, #4a00e0);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 14px 19px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    box-shadow: 0 4px 6px rgba(241, 13, 199, 0.37);
+    transform: scale(1.085);
+}
+
+.glow-star {
+  width: 48px;
+  height: 48px;
+}
+
+.hero-text h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  max-width: 500px;
+}
+
+
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 5px #a855f7);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px #a855f7);
+  }
+}
+
+.insights-grid {
+  margin-top: 2.5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.insight-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.insight-card:hover {
+  transform: translateY(-5px);
+}
+
+.insight-card h2 {
+  font-size: 1.2rem;
+  color: #4c1d95;
+  margin-bottom: 0.5rem;
+}
+
+.insight-card p {
+  color: #374151;
+}
+

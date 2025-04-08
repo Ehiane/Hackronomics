@@ -1,0 +1,90 @@
+.transactions-page {
+    background: #f7f9fb;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .transactions-header {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    position: relative;
+  }
+  
+  .transactions-back-btn {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    background: linear-gradient(to right, #2994e0, #023bd6);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .transactions-back-btn:hover {
+    box-shadow: 0 4px 6px rgba(13, 142, 241, 0.734);
+    transform: scale(1.085);
+  }
+  
+  .transactions-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+  }
+  
+  .transactions-header p {
+    color: #6b7280;
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .transactions-table {
+    background: white;
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+  }
+  
+  .transactions-table-header,
+  .transaction-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 500;
+  }
+  
+  .transactions-table-header {
+    color: #374151;
+    font-size: 1.1rem;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .transaction-row:last-child {
+    border-bottom: none;
+  }
+  
+  .transaction-row span {
+    font-size: 1rem;
+    color: #374151;
+  }
+  
+  .transaction-row .expense {
+    color: #ef4444;
+    font-weight: bold;
+  }
+  
+  .transaction-row .income {
+    color: #10b981;
+    font-weight: bold;
+  }
+  

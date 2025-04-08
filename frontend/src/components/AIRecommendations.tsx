@@ -14,7 +14,7 @@ const AIRecommendations = () => {
   return (
     <motion.div
       className="bg-white shadow-md rounded-2xl p-6"
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.0001 }}
     >
       <h2 className="text-xl font-semibold mb-4">AI Recommendations</h2>
       <div className="space-y-2">
@@ -22,7 +22,7 @@ const AIRecommendations = () => {
           <motion.div
             key={index}
             className="p-2 bg-blue-50 rounded-lg text-sm text-blue-800 cursor-pointer hover:bg-blue-100 transition-colors"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.020 }}
           >
             {recommendation}
           </motion.div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import AIRecommendations from "./AIRecommendations";
 import ExpenseBreakdown from "./ExpenseBreakdown";
@@ -18,10 +19,10 @@ interface User {
   // Add other fields as needed
 }
 
-
 const Dashboard = () => {
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -76,19 +77,20 @@ const Dashboard = () => {
 
         {/* Main Dashboard Cards */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/transactions")} className="cursor-pointer">
             <BalanceCard />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/savings-plan")} className="cursor-pointer">
             <WeeklySavings />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/expenses")} className="cursor-pointer">
             <ExpenseBreakdown />
           </motion.div>
-          <motion.div whileHover={{ scale: 1.05 }}>
+          <motion.div whileHover={{ scale: 1.009 }} onClick={() => navigate("/insights")} className="cursor-pointer">
             <AIRecommendations />
           </motion.div>
         </div>
+
       </main>
 
       {/* Footer */}
