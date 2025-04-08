@@ -44,47 +44,51 @@
     font-size: 1rem;
     text-align: center;
   }
-  
-  .transactions-table {
-    background: white;
-    border-radius: 16px;
-    padding: 1rem 2rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-  }
-  
-  .transactions-table-header,
-  .transaction-row {
+  .transactions-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    font-weight: 500;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
   }
   
-  .transactions-table-header {
-    color: #374151;
+  .transaction-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .transaction-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .tx-category {
+    font-weight: bold;
     font-size: 1.1rem;
-    background-color: #f3f4f6;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
+    color: #6366f1;
   }
   
-  .transaction-row:last-child {
-    border-bottom: none;
+  .tx-amount {
+    font-weight: bold;
+    font-size: 1.1rem;
   }
   
-  .transaction-row span {
-    font-size: 1rem;
+  .tx-amount.expense {
+    color: #ef4444;
+  }
+  
+  .tx-amount.income {
+    color: #10b981;
+  }
+  
+  .card-body p {
+    margin: 4px 0;
+    font-size: 0.95rem;
     color: #374151;
   }
-  
-  .transaction-row .expense {
-    color: #ef4444;
-    font-weight: bold;
-  }
-  
-  .transaction-row .income {
-    color: #10b981;
-    font-weight: bold;
-  }
-  

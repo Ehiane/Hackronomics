@@ -27,14 +27,13 @@ const LoginPage = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // ✅ Save important info in localStorage
+      // Save important info in localStorage
       localStorage.setItem("token", data.token); // for authenticated requests
       localStorage.setItem("userID", data.userID); // needed for querying user-based data
       localStorage.setItem("role", data.role); // useful for role-based routing
 
-      console.log("🔐 Logged in:", data);
 
-      // ✅ Navigate user based on their role
+      // Navigate user based on their role
       if (data.role === "admin") {
         navigate("/admin/dashboard");
       } else {

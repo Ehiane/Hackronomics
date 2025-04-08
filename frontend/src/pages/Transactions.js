@@ -1,45 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./TransactionsPage.css";
+import API from "../utils/api";
 
-const dummyTransactions = [
-    { id: 1, category: "Groceries", amount: -50, date: "2025-04-01" },
-    { id: 2, category: "Paycheck", amount: 2000, date: "2025-03-29" },
-    { id: 3, category: "Dining", amount: -40, date: "2025-03-28" },
-    { id: 4, category: "Utilities", amount: -100, date: "2025-03-26" },
-    { id: 5, category: "Entertainment", amount: -75, date: "2025-03-25" },
-];
+
 
 const TransactionsPage = () => {
     const navigate = useNavigate();
+    const [transactions, setTransactions] = useState([]);
+    const userID = localStorage.getItem("userID");
+    console.log(userID)
+
+
+    useEffect(() => {
+        const fetchTransactions = async () => {
+            try {
+                const res = await API.get(`/transactions/user/${userID}`);
+                console.log(res.data)
+                setTransactions(res.data);
+            } catch (error) {
+                console.error("Failed to fetch transactions", error)
+            }
+        };
+        fetchTransactions();
+    }, [userID]);
 
     return (
     <div className="transactions-page">
         <div className="transactions-header">
-        <button className="transactions-back-btn" onClick={() => navigate("/dashboard")}>
-            ← Back to Dashboard
-        </button>
-        <h1>All Transactions</h1>
-        <p>View and track your transaction history in real-time.</p>
+            <button className="transactions-back-btn" onClick={() => navigate("/dashboard")}>
+                ← Back to Dashboard
+            </button>
+            <h1>All Transactions</h1>
+            <p>Track all your financial activity, categorized and detailed for better insight.</p>
         </div>
 
-        <div className="transactions-table">
-        <div className="transactions-table-header">
-            <span>Date</span>
-            <span>Category</span>
-            <span>Amount</span>
-        </div>
+        <div className="transactions-grid">
+            {transactions.map((tx) => (
 
-        {dummyTransactions.map((tx) => (
-            <div className="transaction-row" key={tx.id}>
-            <span>{tx.date}</span>
-            <span>{tx.category}</span>
-            <span className={tx.amount < 0 ? "expense" : "income"}>
-                {tx.amount < 0 ? `-$${Math.abs(tx.amount)}` : `+$${tx.amount}`}
-            </span>
-            </div>
-        ))}
-        </div>
+                <div key={tx._id} className="transaction-card">
+                    <div className="card-top">
+                        <span className="tx-category">{tx.category}</span>
+                        <span className={`tx-amount ${tx.amountSpent < 0 ? "expense" : "income"}`}>
+                            {tx.amountSpent < 0 ? `-$${Math.abs(tx.amountSpent)}` : `+$${tx.amountSpent}`}
+                        </span>
+                    </div>
+
+                    <div className="card-body">
+                    <p><strong>Merchant:</strong> {tx.merchantName} ({tx.merchantType})</p>
+                    <p><strong>Description:</strong> {tx.description}</p>
+                    <p><strong>Payment Method:</strong> {tx.transactionType}</p>
+                    <p><strong>Date:</strong> {new Date(tx.transactionDate).toLocaleDateString()}</p>
+                    <p><strong>Location:</strong> {tx.Location.city}, {tx.Location.state} ({tx.Location.zipcode})</p>
+                    </div>
+                </div>
+            ))}
+        </div>        
     </div>
     );
 };
