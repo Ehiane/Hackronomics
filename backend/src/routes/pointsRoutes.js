@@ -10,6 +10,7 @@ router.post("/points-create", createPointsTable);
 router.get("/points/:userID", getPoints);
 
 // Route to update the user's points
-router.put("/points/update/:userID&:points", updatePoints)
+router.put("/points/update/:userID/:points", updatePoints)
 
-// Route to 
+
+export default router;

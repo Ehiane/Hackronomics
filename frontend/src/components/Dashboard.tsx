@@ -19,10 +19,15 @@ interface User {
   // Add other fields as needed
 }
 
+interface Points {
+  points: number;
+}
+
 const Dashboard = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);
+  const [points, setPoints] = useState<Points | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,19 +37,38 @@ const Dashboard = () => {
   
       if (!token || !userId) return;
   
+      // Check if the token is expired or invalid
       try {
-        const response = await fetch(`http://localhost:5001/api/${userId}`, {
+        // Gets the user data from the backend
+        const userResponse = await fetch(`http://localhost:5001/api/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
   
-        if (response.ok) {
-          const userData = await response.json();
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
           setUser(userData);
         } else {
           console.error("Failed to fetch user data");
+        }
+
+        // Gets the points data from the backend
+        const pointsResponse = await fetch(`http://localhost:5001/api/points/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        
+        if (pointsResponse.ok) {
+          const pointsData = await pointsResponse.json();
+          // setPoints(pointsData);
+          setPoints(pointsData.points); // Assuming pointsData has a 'points' field
+        }
+        else{
+          console.error("Failed to fetch points data");
         }
       } catch (error) {
         console.error("Error:", error);
@@ -74,6 +98,11 @@ const Dashboard = () => {
           <p className="text-gray-500">
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
+          <p className="text-gray-500">
+            {points ? `Points: ${points.points}` : "Getting points..."}
+            {/* {user ? `Email: ${user.email}` : "Loading..."} */}
+          </p>
+
         </div>
 
         {/* Main Dashboard Cards */}

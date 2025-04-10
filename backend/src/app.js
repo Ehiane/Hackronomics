@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import userRoutes from "./routes/userRoutes.js";
 import transactionRoutes from "./routes/TransactionRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
-
+import pointsRoutes from "./routes/pointsRoutes.js";
 import cors from "cors";
 
 
@@ -25,9 +25,10 @@ app.use(cors({
 
 // MongoDB-based authentication routes
 //app.use("/api/users", userRoutes);
-app.use("/api", userRoutes); // /api/register, /api/login, etc.
+app.use("/api/users", userRoutes); // /api/register, /api/login, etc.
 app.use("/api/transactions", transactionRoutes)
 app.use("/api/categories", categoryRoutes);
+app.use("/api/points", pointsRoutes);
 // Homepage
 app.get("/", (req, res) => {
   res.send('<h1>Welcome</h1><a href="/login">Login</a>');

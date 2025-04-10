@@ -12,7 +12,7 @@ export const createPointsTable = async (req, res) => {
     try {
         const { userID } = req.body; // JSON from request
 
-        if (!userID){
+        if (!userID || !mongoose.Types.ObjectId.isValid(userID)){
             res.status(400).json({ error: "Invalid or missing userID, needed for this!" });
             return;
         }
@@ -29,7 +29,7 @@ export const createPointsTable = async (req, res) => {
         }
         else{
             console.error("Error creating points table:", error);
-            res.status(400).json({ error: "Could not to create points table. UserID caused issues from this point onwards" });
+            res.status(400).json({ error: "Could not create points table. UserID caused issues from this point onwards" });
         }
     }
     catch (error) {
@@ -48,7 +48,7 @@ export const getPoints = async (req, res) => {
     
     try {
         console.log(`Fetching points for userID: ${userID}`);
-        const points = await Points.findOne({ userID: userID });
+        const points = await Points.findOne({ userID });
         
         if (points) {
             res.status(200).json(points);
@@ -68,20 +68,20 @@ export const getPoints = async (req, res) => {
  * @access Public
  */
 export const updatePoints = async (req, res) => {
-    const usID = req.params.one;
-    const point = req.params.two;
+    const {userID, points } = req.params; // Extract userID and points from request parameters
     try {
-        console.log(`Getting points for userID: ${usID}`);
-        const points = await Points.findOne({ userID: usID });
-        if (points) {
-            points.points = point; // Update points
-            await points.save(); // Save the updated points table
-            res.status(200).json(points);
+        console.log(`Updating points for userID: ${userID}`);
+        const pointsReceived = await Points.findOne({ userID });
+        if (pointsReceived) {
+            pointsReceived.points = Number(pointsReceived); // Update points
+            await pointsReceived.save(); // Save the updated points table
+            res.status(200).json(pointsReceived);
         } else {
             res.status(404).json({ error: "Points table not found" });
         }
     }
     catch (error){
-
+        console.error("Error updating points:", error);
+        res.status(500).json({ message: "Server error", error });   
     }
 }
