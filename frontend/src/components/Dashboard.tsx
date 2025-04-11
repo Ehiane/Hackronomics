@@ -34,12 +34,13 @@ const Dashboard = () => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userID"); 
-  
+
       if (!token || !userId) return;
   
       // Check if the token is expired or invalid
       try {
         // Gets the user data from the backend
+        console.log("userID: " + userId);
         const userResponse = await fetch(`http://localhost:5001/api/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,29 +54,38 @@ const Dashboard = () => {
         } else {
           console.error("Failed to fetch user data");
         }
-
-        // Gets the points data from the backend
-        const pointsResponse = await fetch(`http://localhost:5001/api/points/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-        
-        if (pointsResponse.ok) {
-          const pointsData = await pointsResponse.json();
-          // setPoints(pointsData);
-          setPoints(pointsData.points); // Assuming pointsData has a 'points' field
-        }
-        else{
-          console.error("Failed to fetch points data");
-        }
       } catch (error) {
         console.error("Error:", error);
       }
     };
   
+    const fetchPointsData = async () => {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userID"); // Get the user ID from local storage
+
+      if (!token || !userId) return;
+  
+      try {
+        const response = await fetch(`http://localhost:5001/api/points/get/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          setPoints(data);
+        } else {
+          console.error("Failed to fetch points data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
     fetchUserData();
+    fetchPointsData();
   }, []);
   
 
@@ -99,7 +109,7 @@ const Dashboard = () => {
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
           <p className="text-gray-500">
-            {points ? `Points: ${points.points}` : "Getting points..."}
+            {points ? `Points: ${points}` : "Getting points..."}
             {/* {user ? `Email: ${user.email}` : "Loading..."} */}
           </p>
 

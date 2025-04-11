@@ -5,4 +5,5 @@ const PointsSchema = new mongoose.Schema({
     points: { type: Number, default: 0 }, // Points earned by the user
 });
 
-export default mongoose.model("Store", PointsSchema);
+const Points = mongoose.model("Points", PointsSchema);
+export default Points;
