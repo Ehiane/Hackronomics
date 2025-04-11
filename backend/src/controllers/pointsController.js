@@ -12,9 +12,13 @@ export const createPointsTable = async (req, res) => {
     try {
         const { userID } = req.body; // JSON from request
 
-        if (!userID || !mongoose.Types.ObjectId.isValid(userID)){
-            res.status(400).json({ error: "Invalid or missing userID, needed for this!" });
-            return;
+        if (!userID){
+            return res.status(400).json({ error: "Invalid or missing userID, needed for this!" });
+        }
+
+        const existingPoints = await Points.findOne({ userID }); // Check if points table already exists for the user
+        if (existingPoints) {
+            return res.status(400).json({ error: "Points table already exists for this user" });
         }
 
         const points = await Points.create({
