@@ -27,7 +27,7 @@ const Dashboard = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);
-  const [points, setPoints] = useState<Points | null>(null);
+  const [points, setPoints] = useState<Points>({ points: 0 });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,9 +73,18 @@ const Dashboard = () => {
           },
         });
   
+        const data = await response.json();
+        console.log("Points data:", data); // Log the points data	
+        
         if (response.ok) {
-          const data = await response.json();
-          setPoints(data);
+          
+          if (typeof(data.points === "Number")) {
+            setPoints(data);
+          }
+          else{
+            console.warn("Points data is not a number:", data.points);
+            setPoints({ points: 0 }); // Set to 0 or handle as needed
+          }
         } else {
           console.error("Failed to fetch points data");
         }
@@ -109,7 +118,11 @@ const Dashboard = () => {
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
           <p className="text-gray-500">
-            {points ? `Points: ${points}` : "Getting points..."}
+            {points ? `Points: ${points}` : "Points: 0"}
+
+
+
+
             {/* {user ? `Email: ${user.email}` : "Loading..."} */}
           </p>
 

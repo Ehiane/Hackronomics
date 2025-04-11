@@ -54,13 +54,20 @@ export const getPoints = async (req, res) => {
   }
 
   try {
-    // console.log(`Fetching points for userID: ${userID}`);
+    console.log(`Fetching points for userID: ${userID}`);
     const points = await Points.findOne({ userID }).select("points"); // Fetch points for the user
     // console.log("Points fetched:", points);
 
-    if (points) {
-      res.status(200).json(points.points); // Return points
-    //   console.log("Points fetched successfully:", points.points);
+    if (points != null && points != undefined) {
+        if (points.points == 0) {
+            console.log("Points are 0 for userID:", userID);
+            res.status(200).json(0); // Return 0 points if no points are found
+        }	
+        else{
+            res.status(200).json(points.points); // Return points
+            console.log("Points fetched successfully:", points.points);
+        }
+      
     } else {
       res.status(404).json({ error: "Points table not found" });
       console.log("Points table not found for userID:", userID);
