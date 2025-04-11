@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Points from "../models/Points.js"; // Ensure correct import
 import mongoose from "mongoose";
+import {createPointsForUser} from "../utils/pointsUtils.js"; // Ensure correct import
 
 /**
  * @desc    Register a new user's points table
@@ -16,25 +17,12 @@ export const createPointsTable = async (req, res) => {
             return res.status(400).json({ error: "Invalid or missing userID, needed for this!" });
         }
 
-        const existingPoints = await Points.findOne({ userID }); // Check if points table already exists for the user
-        if (existingPoints) {
-            return res.status(400).json({ error: "Points table already exists for this user" });
-        }
+        const points = await createPointsForUser(userID); // Create points table for the user
+        return res.status(201).json({
+            userID: points.userID, 
+            points: points.points,
 
-        const points = await Points.create({
-            userID: userID,
-            points: 0, // Initialize points to 0
-        }); 
-        if (points){
-            res.status(201).json({
-                userID: points.userID,
-                points: points.points // Points earned by the user
-            });
-        }
-        else{
-            console.error("Error creating points table:", error);
-            res.status(400).json({ error: "Could not create points table. UserID caused issues from this point onwards" });
-        }
+        });
     }
     catch (error) {
         console.error("Error creating points table:", error);
@@ -55,23 +43,12 @@ export const getPoints = async (req, res) => {
 
   try {
     console.log(`Fetching points for userID: ${userID}`);
-    const points = await Points.findOne({ userID }).select("points"); // Fetch points for the user
-    // console.log("Points fetched:", points);
+    const points = await createPointsForUser(userID); // Fetch points for the user
+    return res.status(200).json({
+        userID: points.userID,
+        points: points.points,
+    });
 
-    if (points != null && points != undefined) {
-        if (points.points == 0) {
-            console.log("Points are 0 for userID:", userID);
-            res.status(200).json(0); // Return 0 points if no points are found
-        }	
-        else{
-            res.status(200).json(points.points); // Return points
-            console.log("Points fetched successfully:", points.points);
-        }
-      
-    } else {
-      res.status(404).json({ error: "Points table not found" });
-      console.log("Points table not found for userID:", userID);
-    }
   } catch (error) {
     console.error("Error retrieving points:", error);
     res.status(500).json({ message: "Server error", error });

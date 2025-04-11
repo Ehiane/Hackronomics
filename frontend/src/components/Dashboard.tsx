@@ -118,7 +118,7 @@ const Dashboard = () => {
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
           <p className="text-gray-500">
-            {points ? `Points: ${points}` : "Points: 0"}
+            {points ? `Points: ${points.points}` : "Points: 0"}
 
 
 
