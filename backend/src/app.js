@@ -6,6 +6,7 @@ import userRoutes from "./routes/userRoutes.js";
 import transactionRoutes from "./routes/TransactionRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import pointsRoutes from "./routes/pointsRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
 import cors from "cors";
 
 
@@ -29,6 +30,8 @@ app.use("/api/users", userRoutes); // /api/register, /api/login, etc.
 app.use("/api/transactions", transactionRoutes)
 app.use("/api/categories", categoryRoutes);
 app.use("/api/points", pointsRoutes);
+app.use("/api/items", itemRoutes);
+
 // Homepage
 app.get("/", (req, res) => {
   res.send('<h1>Welcome</h1><a href="/login">Login</a>');

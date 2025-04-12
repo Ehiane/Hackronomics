@@ -7,4 +7,4 @@ const ItemsSchema = new mongoose.Schema({
     price: {type: Number, required: true}, // price in "Save Points"
 });
 
-export default mongoose.model("Store", ItemsSchema);
+export default mongoose.model("Item", ItemsSchema);
