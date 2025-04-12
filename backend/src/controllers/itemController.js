@@ -101,7 +101,7 @@ export const getAllItems = async (req, res) => {
 
 /** 
  * @desc Register a new item to add to the item collection
- * @route POST /api/items/update
+ * @route PUT /api/items/update
  * @access Public
  */
 export const updateItem = async (req, res) => {
