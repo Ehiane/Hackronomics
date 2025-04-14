@@ -8,6 +8,7 @@ import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
 import HeaderDashboard from "../pages/HeaderDashboard";
+import { Shirt, ShoppingBag } from "lucide-react";
 
 interface User {
   name: string;
@@ -119,12 +120,24 @@ const Dashboard = () => {
           </p>
           <p className="text-gray-500">
             {points ? `Points: ${points.points}` : "Points: 0"}
-
-
-
-
-            {/* {user ? `Email: ${user.email}` : "Loading..."} */}
           </p>
+
+          <div className="mt-4 flex flex-col gap-2 w-full">
+            <button
+              onClick={() => navigate("/inventory")}
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200"
+            >
+              <Shirt className="inline-block mr-2" size={16} /> {/* Icon for Inventory */}
+              Inventory
+            </button>
+            <button
+              onClick={() => navigate("/store")}
+              className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-200"
+            >
+              <ShoppingBag className="inline-block mr-2" size={16} /> {/* Icon for Store */}
+              Store
+            </button>
+          </div>
 
         </div>
 
