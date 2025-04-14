@@ -1,7 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import HeaderDashboard from "./HeaderDashboard";
 import StoreItemCard from "../components/StoreItemCard";
 
 interface StoreItem {
@@ -13,7 +11,11 @@ interface StoreItem {
     isOwned: boolean;
   }
 
-  const sampleStoreItems: StoreItem[] = [
+interface Points {
+    points: number;
+}
+
+const sampleStoreItems: StoreItem[] = [
     {
         id: "1",
         name: "Red Hoodie",
@@ -67,6 +69,8 @@ export const StorePage: React.FC = () => {
                 ⬅ Back to Dashboard
             </button>
             <h2 className="text-2xl font-bold mb-6 text-right">Store</h2>
+            <h3 className="text-lg mb-4 text-center">Purchase items to enhance your avatar!</h3>
+            <h4 className="text-md mb-4 text-center">Current Points: </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {sampleStoreItems.map((item) => (
                     <StoreItemCard 

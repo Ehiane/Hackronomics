@@ -17,7 +17,14 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({ name, price, categ
                     <h2 className="text-xl font-semibold mb-2">{name}</h2>
                     <h3 className="text-lg font-bold">{category}</h3>
                     <p className="text-gray-600">${price}</p>
-                    {isOwned && <p className="text-green-500 mt-2">Owned</p>}
+                    {isOwned ? (
+                        <p className="text-green-500 mt-2">Owned</p>
+                    ) : (
+                        <button 
+                        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">
+                            Purchase
+                        </button>
+                    )}
                 </div>
             </CardContent>
         </Card>
