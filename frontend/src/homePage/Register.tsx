@@ -42,7 +42,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/api/register", {
+      const userResponse = await fetch("http://localhost:5001/api/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -56,11 +56,24 @@ const Register = () => {
         }), // End of the body
       }); // End of feetch
 
-      const data = await response.json();
+      const data = await userResponse.json();
 
-      if (!response.ok) throw new Error(data.message || "Registration failed");
+      if (!userResponse.ok) throw new Error(data.message || "Registration failed");
 
       alert("Registration successful!");
+
+      const pointsResponse = await fetch("http://localhost:5001/api/points/points-create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userID: data.userID
+        }), // End of the body
+      })
+
+      if (!pointsResponse.ok) throw new Error(data.message || "Points creation failed");
+
+      alert("Points creation successful!");
+
       navigate("/login");
     } catch (err: any) {
       // End of try

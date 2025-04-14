@@ -17,6 +17,8 @@ import Transactions from "./pages/Transactions";
 import SavingsPlan from "./pages/SavingsPlan";
 import AIInsights from "./pages/Insights";
 import Expenses from "./pages/Expenses";
+import StorePage from "./pages/Store";
+import InventoryPage from "./pages/Inventory";
 import Bio from "./pages/Bio";
 
 const App = () => {
@@ -37,7 +39,11 @@ const App = () => {
         <Route path="/savings-plan" element={<SavingsPlan />} />
         <Route path="/insights" element={<AIInsights />} />
         <Route path="/expenses" element={<Expenses />} />
+        <Route path="/inventory" element={<InventoryPage />} />
+        <Route path="/store" element={<StorePage />} />
         <Route path="/bio" element={<Bio />} />
+        {/* Auth0 provider */}
+        
 
         {/* Admin section (protected) */}
         <Route

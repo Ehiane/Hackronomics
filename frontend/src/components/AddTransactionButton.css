@@ -1,0 +1,40 @@
+.add-transaction-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.add-transaction-btn {
+    background: linear-gradient(to right, #28a745, #6cd47f);
+    color: white;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.add-transaction-btn:hover {
+    opacity: 0.9;
+}
+
+.dropdown-menu {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-menu div {
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-menu div:hover {
+    background: #f1f1f1;
+}

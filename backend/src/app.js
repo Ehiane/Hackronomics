@@ -3,7 +3,11 @@ import path from "path";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import userRoutes from "./routes/userRoutes.js";
-
+import transactionRoutes from "./routes/TransactionRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
+import pointsRoutes from "./routes/pointsRoutes.js";
+import itemRoutes from "./routes/itemRoutes.js";
+import userItemListRoutes from "./routes/userItemListRoutes.js";
 import cors from "cors";
 
 //const cors = require('cors');
@@ -22,6 +26,14 @@ app.use(cors({
 
 // MongoDB-based authentication routes
 //app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes); // /api/register, /api/login, etc.
+app.use("/api/transactions", transactionRoutes)
+app.use("/api/categories", categoryRoutes);
+app.use("/api/points", pointsRoutes);
+app.use("/api/items", itemRoutes);
+app.use("/api/userItemList", userItemListRoutes);
+
+// Homepage
 app.use("/api", userRoutes); // /api/register, /api/login, etc.
 
 

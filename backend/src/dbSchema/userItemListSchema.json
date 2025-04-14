@@ -1,0 +1,30 @@
+{
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": "userID",
+        "properties": {
+            "userID": {
+                "bsonType": "string",
+                "description": "Unique identifier for the user"
+            },
+            "itemList": {
+                "bsonType": "array",
+                "items": {
+                    "bsonType": "object",
+                    "required": ["itemID", "quantity"],
+                    "properties": {
+                        "itemID": {
+                            "bsonType": "string",
+                            "description": "Unique identifier for the item"
+                        },
+                        "quantity": {
+                            "bsonType": "int",
+                            "description": "Number of items in the list"
+                        }
+                    }
+                },
+                "description": "List of items owned by the user"
+            }
+        }
+    }
+}

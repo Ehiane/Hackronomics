@@ -8,6 +8,7 @@ import BalanceCard from "./BalanceCard";
 import Avatar3D from "./Avatar3D";
 import { Canvas } from "@react-three/fiber";
 import HeaderDashboard from "../pages/HeaderDashboard";
+import { Shirt, ShoppingBag } from "lucide-react";
 
 interface User {
   name: string;
@@ -19,28 +20,37 @@ interface User {
   // Add other fields as needed
 }
 
+interface Points {
+  points: number;
+}
+
 const Dashboard = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [savings, setSavings] = useState(1200); // You can adjust this later
   const [user, setUser] = useState<User | null>(null);
+  const [points, setPoints] = useState<Points>({ points: 0 });
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userID"); 
-  
+
       if (!token || !userId) return;
   
+      // Check if the token is expired or invalid
       try {
-        const response = await fetch(`http://localhost:5001/api/${userId}`, {
+        // Gets the user data from the backend
+        console.log("userID: " + userId);
+        const userResponse = await fetch(`http://localhost:5001/api/users/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
   
-        if (response.ok) {
-          const userData = await response.json();
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
           setUser(userData);
         } else {
           console.error("Failed to fetch user data");
@@ -50,7 +60,42 @@ const Dashboard = () => {
       }
     };
   
+    const fetchPointsData = async () => {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userID"); // Get the user ID from local storage
+
+      if (!token || !userId) return;
+  
+      try {
+        const response = await fetch(`http://localhost:5001/api/points/get/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        const data = await response.json();
+        console.log("Points data:", data); // Log the points data	
+        
+        if (response.ok) {
+          
+          if (typeof(data.points === "Number")) {
+            setPoints(data);
+          }
+          else{
+            console.warn("Points data is not a number:", data.points);
+            setPoints({ points: 0 }); // Set to 0 or handle as needed
+          }
+        } else {
+          console.error("Failed to fetch points data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
     fetchUserData();
+    fetchPointsData();
   }, []);
   
 
@@ -89,6 +134,27 @@ const Dashboard = () => {
           <p className="text-gray-500">
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
+          <p className="text-gray-500">
+            {points ? `Points: ${points.points}` : "Points: 0"}
+          </p>
+
+          <div className="mt-4 flex flex-col gap-2 w-full">
+            <button
+              onClick={() => navigate("/inventory")}
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200"
+            >
+              <Shirt className="inline-block mr-2" size={16} /> {/* Icon for Inventory */}
+              Inventory
+            </button>
+            <button
+              onClick={() => navigate("/store")}
+              className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-200"
+            >
+              <ShoppingBag className="inline-block mr-2" size={16} /> {/* Icon for Store */}
+              Store
+            </button>
+          </div>
+
         </div>
 
 

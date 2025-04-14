@@ -44,47 +44,128 @@
     font-size: 1rem;
     text-align: center;
   }
-  
-  .transactions-table {
-    background: white;
-    border-radius: 16px;
-    padding: 1rem 2rem;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-  }
-  
-  .transactions-table-header,
-  .transaction-row {
+  .transactions-grid {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #e5e7eb;
-    font-weight: 500;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
   }
   
-  .transactions-table-header {
-    color: #374151;
+  .transaction-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .transaction-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .tx-category {
+    font-weight: bold;
     font-size: 1.1rem;
-    background-color: #f3f4f6;
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
+    color: #6366f1;
   }
   
-  .transaction-row:last-child {
-    border-bottom: none;
+  .tx-amount {
+    font-weight: bold;
+    font-size: 1.1rem;
   }
   
-  .transaction-row span {
-    font-size: 1rem;
+  .tx-amount.expense {
+    color: #ef4444;
+  }
+  
+  .tx-amount.income {
+    color: #10b981;
+  }
+  
+  .card-body p {
+    margin: 4px 0;
+    font-size: 0.95rem;
     color: #374151;
   }
-  
-  .transaction-row .expense {
-    color: #ef4444;
-    font-weight: bold;
+
+  .transaction-form {
+    background: #fff;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
   
-  .transaction-row .income {
-    color: #10b981;
-    font-weight: bold;
+  .transaction-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #111827;
   }
   
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  
+  .transaction-form input,
+  .transaction-form select {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .submit-btn {
+    margin-top: 1.2rem;
+    background: linear-gradient(to right, #16a34a, #4ade80);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(to right, #15803d, #22c55e);
+  }
+  
+  .csv-upload-container {
+  background: #ffffff;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.csv-upload-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.csv-input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: linear-gradient(to right, #15803d, #22c55e);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.csv-input:hover {
+  cursor: pointer;
+}
+
+.csv-hint {
+  font-size: 0.95rem;
+  color: green;
+}
