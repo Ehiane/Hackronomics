@@ -6,7 +6,6 @@ import userRoutes from "./routes/userRoutes.js";
 
 import cors from "cors";
 
-
 //const cors = require('cors');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,32 +20,32 @@ app.use(cors({
   credentials: true,
 }));
 
-// ✅ MongoDB-based authentication routes
+// MongoDB-based authentication routes
 //app.use("/api/users", userRoutes);
 app.use("/api", userRoutes); // /api/register, /api/login, etc.
 
 
-// ✅ Homepage
+//  Homepage
 app.get("/", (req, res) => {
   res.send('<h1>Welcome</h1><a href="/login">Login</a>');
 });
 
-// ✅ User dashboard (optional: protect with JWT)
+// User dashboard (optional: protect with JWT)
 app.get("/dashboard", (req, res) => {
   res.send('<h1>User Dashboard</h1><a href="/logout">Logout</a>');
 });
 
-// ✅ Admin dashboard
+// Admin dashboard
 app.get("/admin/dashboard", (req, res) => {
   res.send('<h1>Admin Dashboard</h1><a href="/logout">Logout</a>');
 });
 
-// ✅ Logout (just frontend redirect)
+// Logout (just frontend redirect)
 app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-// ✅ Serve frontend
+// Serve frontend
 // app.use(express.static(path.join(__dirname, "../auth0-login-demo/build")));
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../auth0-login-demo/build/index.html"));

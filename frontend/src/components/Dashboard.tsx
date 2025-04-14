@@ -60,8 +60,24 @@ const Dashboard = () => {
 
       {/* Dashboard Content */}
       <main className="p-6 flex-1 flex">
+
         {/* Sidebar with Avatar */}
-        <div className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6">
+        {/* <div className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6">
+          <div className="w-full h-64">
+            <Canvas>
+              <Avatar3D savings={savings} />
+            </Canvas>
+          </div>
+          <h2 className="text-xl font-semibold mt-4">
+            {user ? user.name : "Loading..."}
+          </h2>
+          <p className="text-gray-500">
+            {user ? `Role: ${user.role}` : "Placeholder Avatar"}
+          </p>
+        </div> */}
+
+        <div  className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6 cursor-pointer hover:shadow-lg transition" 
+         onClick={() => navigate("/bio")}>
           <div className="w-full h-64">
             <Canvas>
               <Avatar3D savings={savings} />
@@ -74,6 +90,8 @@ const Dashboard = () => {
             {user ? `Role: ${user.role}` : "Placeholder Avatar"}
           </p>
         </div>
+
+
 
         {/* Main Dashboard Cards */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
