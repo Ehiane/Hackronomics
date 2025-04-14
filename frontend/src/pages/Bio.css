@@ -1,0 +1,103 @@
+.bio-container {
+    background-color: #f9fafc;
+    min-height: 100vh;
+    padding: 30px 20px 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bio-back-button {
+    align-self: flex-start;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    padding: 12px 18px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.bio-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.bio-avatar {
+    width: 230px;
+    height: 230px;
+    margin-bottom: 28px;
+}
+
+.bio-details {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    width: 90%;
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.bio-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bio-field label {
+    font-weight: bold;
+    margin-right: 12px;
+    flex: 1;
+}
+
+.bio-field span,
+.bio-field input {
+    flex: 2;
+    text-align: left;
+}
+
+.bio-field input {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.bio-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.bio-edit,
+.bio-save,
+.bio-cancel {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.bio-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.bio-save {
+    background-color: #28a745;
+    color: white;
+}
+
+.bio-cancel {
+    background-color: #dc3545;
+    color: white;
+}
