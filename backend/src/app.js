@@ -10,7 +10,6 @@ import itemRoutes from "./routes/itemRoutes.js";
 import userItemListRoutes from "./routes/userItemListRoutes.js";
 import cors from "cors";
 
-
 //const cors = require('cors');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +34,10 @@ app.use("/api/items", itemRoutes);
 app.use("/api/userItemList", userItemListRoutes);
 
 // Homepage
+app.use("/api", userRoutes); // /api/register, /api/login, etc.
+
+
+//  Homepage
 app.get("/", (req, res) => {
   res.send('<h1>Welcome</h1><a href="/login">Login</a>');
 });
@@ -54,7 +57,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-// ✅ Serve frontend
+// Serve frontend
 // app.use(express.static(path.join(__dirname, "../auth0-login-demo/build")));
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../auth0-login-demo/build/index.html"));
