@@ -10,10 +10,11 @@ import mongoose from "mongoose";
  */
 export const registerItem = async (req, res) => {
     try {
-        const { category, imageURL, price } = req.body; // JSON from request
+        const { name, category, imageURL, price } = req.body; // JSON from request
 
         const item = await Item.create({
             itemID: new mongoose.Types.ObjectId(), // Generate a new ObjectId for itemID
+            name,
             category,
             imageURL,
             price,
@@ -22,6 +23,7 @@ export const registerItem = async (req, res) => {
             console.log("Valid item data");
             return res.status(201).json({
             itemID: item.itemID, 
+            name: item.name,
             category: item.category,
             imageURL: item.imageURL,
             price: item.price,
@@ -58,6 +60,7 @@ export const getItem = async (req, res) => {
             console.log("Valid item data");
             return res.status(200).json({
                 itemID: foundItem.itemID,
+                name: foundItem.name,
                 category: foundItem.category,
                 imageURL: foundItem.imageURL,
                 price: foundItem.price,
@@ -114,6 +117,7 @@ export const updateItem = async (req, res) => {
         console.log("Getting item of ID: ", itemID, " to update");
         const itemToUpdate = await Item.findOne({ itemID }); // Fetch an item by the itemID
         if (itemToUpdate){
+            itemToUpdate.name = name || itemToUpdate.name; // Name is not updated, but we need to set it to avoid overwriting
             itemToUpdate.category = category || itemToUpdate.category;
             itemToUpdate.imageURL = imageURL || itemToUpdate.imageURL;
             itemToUpdate.price = price || itemToUpdate.price;
@@ -122,6 +126,7 @@ export const updateItem = async (req, res) => {
             console.log("Item updated successfully");
             res.json({
                 itemID: itemToUpdate.itemID,
+                name: itemToUpdate.name,
                 category: itemToUpdate.category,
                 imageURL: itemToUpdate.imageURL,
                 price: itemToUpdate.price,
