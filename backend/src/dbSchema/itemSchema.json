@@ -7,6 +7,10 @@
         "bsonType": "string",
         "description": "Unique identifier for the store item"
       },
+      "name": {
+        "bsonType": "string",
+        "description": "Name of the item"
+      },
       "category": {
         "bsonType": "string",
         "description": "Type of item (Clothing, Accessories, etc.)"
