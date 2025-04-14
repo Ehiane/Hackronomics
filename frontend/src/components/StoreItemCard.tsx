@@ -7,9 +7,12 @@ interface StoreItemCardProps {
     category: string;
     imageUrl?: string;
     isOwned: boolean;
+    onPurchase?: () => void;
 }
 
-export const StoreItemCard: React.FC<StoreItemCardProps> = ({ name, price, category, imageUrl, isOwned }) => {
+export const StoreItemCard: React.FC<StoreItemCardProps> = ({
+    name, price, category, imageUrl, isOwned, onPurchase
+}) => {
     return (
         <Card className="bg-white w-full max-w-xs">
             <CardContent>
@@ -21,14 +24,16 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({ name, price, categ
                         <p className="text-green-500 mt-2">Owned</p>
                     ) : (
                         <button 
-                        className="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">
+                            onClick={onPurchase}
+                            className="bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">
                             Purchase
                         </button>
                     )}
                 </div>
             </CardContent>
         </Card>
-  );
+    );
 };
+
 
 export default StoreItemCard;

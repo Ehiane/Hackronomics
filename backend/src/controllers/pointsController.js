@@ -57,7 +57,7 @@ export const getPoints = async (req, res) => {
 
 /**
  * @desc Update points table's points for a user based on userID
- * @route POST /api/points/update/:userID&:points
+ * @route PUT /api/points/update/:userID/:points
  * @access Public
  */
 export const updatePoints = async (req, res) => {
@@ -66,7 +66,7 @@ export const updatePoints = async (req, res) => {
         console.log(`Updating points for userID: ${userID}`);
         const pointsReceived = await Points.findOne({ userID });
         if (pointsReceived) {
-            pointsReceived.points = Number(pointsReceived); // Update points
+            pointsReceived.points = Number(points); // Update points
             await pointsReceived.save(); // Save the updated points table
             res.status(200).json(pointsReceived);
         } else {

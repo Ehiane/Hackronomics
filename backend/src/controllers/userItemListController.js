@@ -54,7 +54,7 @@ export const getUserItemList = async (req, res) => {
 /**
  * 
  * @desc Adds an item to the user item list
- * @route POST /api/userItemList/add/:userID&:itemID
+ * @route PUT /api/userItemList/add/:userID/:itemID
  * @access Public
  */
 export const addToUserItemList = async (req, res) => {
@@ -62,12 +62,22 @@ export const addToUserItemList = async (req, res) => {
     if (!userID || !mongoose.Types.ObjectId.isValid(userID)) {
         return res.status(400).json({ error: "Invalid or missing userID" });
     }
-    if (!itemID || !mongoose.Types.ObjectId.isValid(itemID)) {
-        return res.status(400).json({ error: "Invalid or missing itemID" });
+    if (!itemID) {
+        return res.status(400).json({ error: "Missing itemID" });
     }
     try {
         const userItemList = await createOrGetUserItemList(userID); // Fetch user item list for the user
-        userItemList.itemList.push(itemID); // Add item to the user's item list
+
+        const existingItem = userItemList.itemList.find(item => item.itemID === itemID); // Check if the item already exists in the list
+
+        // Checks for whether the item already exists in the list
+        if (existingItem) {
+            existingItem.quantity += 1; // Increment the quantity if the item already exists
+        }
+        else{
+            userItemList.itemList.push({itemID, quantity: 1}); // Add item to the user's item list
+        }
+
         await userItemList.save(); // Save the updated item list
         return res.status(200).json({
             userID: userItemList.userID,
@@ -91,12 +101,23 @@ export const removeFromUserItemList = async (req, res) => {
     if (!userID || !mongoose.Types.ObjectId.isValid(userID)) {
         return res.status(400).json({ error: "Invalid or missing userID" });
     }
-    if (!itemID || !mongoose.Types.ObjectId.isValid(itemID)) {
-        return res.status(400).json({ error: "Invalid or missing itemID" });
+    if (!itemID) {
+        return res.status(400).json({ error: "Missing itemID" });
     }
     try {
         const userItemList = await createOrGetUserItemList(userID); // Fetch user item list for the user
-        userItemList.itemList = userItemList.itemList.filter(item => item !== itemID); // Remove item from the user's item list
+
+        const existingItem = userItemList.itemList.find(item => item.itemID === itemID); // Check if the item already exists in the list
+
+        // Checks for whether the item already exists in the list
+        if (existingItem) {
+            userItemList.itemList = userItemList.itemList.filter(item => item.itemID !== itemID); // Remove the item from the user's item list
+        }
+        else{
+            console.log("The item already does not exist in the list")
+            return res.status(400).json({ error: "Item not found in the list" });
+        }
+
         await userItemList.save(); // Save the updated item list
         return res.status(200).json({
             userID: userItemList.userID,

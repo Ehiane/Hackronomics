@@ -10,9 +10,9 @@ router.post("/register/:userID", registerUserItemList);
 router.get("/get/:userID", getUserItemList);
 
 // Route to add an item to the user item list
-router.post("/add/:userID&:itemID", addToUserItemList);
+router.put("/add/:userID/:itemID", addToUserItemList);
 
 // Route to remove an item from the user item list
-router.post("/remove/:userID&:itemID", removeFromUserItemList);
+router.put("/remove/:userID/:itemID", removeFromUserItemList);
 
 export default router;

@@ -87,7 +87,7 @@ export const InventoryPage: React.FC = () => {
             >
                 ⬅ Back to Dashboard
             </button>
-            <h2 className="text-2xl font-bold mb-6 text-right">Inventory</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">Inventory</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {items.length > 0 ? (
                     items.map((item) => (
