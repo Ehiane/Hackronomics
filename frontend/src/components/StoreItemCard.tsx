@@ -19,7 +19,7 @@ export const StoreItemCard: React.FC<StoreItemCardProps> = ({
                 <div className="flex flex-col items-center">
                     <h2 className="text-xl font-semibold mb-2">{name}</h2>
                     <h3 className="text-lg font-bold">{category}</h3>
-                    <p className="text-gray-600">${price}</p>
+                    <p className="text-gray-600">{price} points</p>
                     {isOwned ? (
                         <p className="text-green-500 mt-2">Owned</p>
                     ) : (
