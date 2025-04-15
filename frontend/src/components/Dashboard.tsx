@@ -98,6 +98,34 @@ const Dashboard = () => {
     fetchPointsData();
   }, []);
   
+  // Handle setting a point value 
+    const handlePointSetting = async (newPoints: number) => {
+      const token = localStorage.getItem("token");
+      const userID = localStorage.getItem("userID");
+      if (!token || !userID) return;
+      try {
+        // Send a request to set the points to newPoints
+        console.log("Setting points to:", newPoints);
+        // const response = await fetch(`http://localhost:5001/api/points/update/${userID}/${newPoints}`, {
+        await fetch(`http://localhost:5001/api/points/update/${userID}/${newPoints}`, {
+          method: "Put",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        // if (!response.ok) {
+        //   console.error("Failed to set points:", response.statusText);
+        //   return;
+        // }
+
+        // Set points state to new value
+        setPoints({ points: newPoints });
+      }
+      catch (error) {
+        console.error("Error setting points:", error);
+      }
+    };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -121,7 +149,7 @@ const Dashboard = () => {
           </p>
         </div> */}
 
-        <div  className="w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6 cursor-pointer hover:shadow-lg transition" 
+        <div  className="bioCard w-[400px] bg-white shadow-md rounded-2xl p-6 flex flex-col items-center mr-6 cursor-pointer hover:shadow-lg transition" 
          onClick={() => navigate("/bio")}>
           <div className="w-full h-64">
             <Canvas>
@@ -140,18 +168,33 @@ const Dashboard = () => {
 
           <div className="mt-4 flex flex-col gap-2 w-full">
             <button
-              onClick={() => navigate("/inventory")}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                navigate("/inventory")
+              }}
               className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200"
             >
               <Shirt className="inline-block mr-2" size={16} /> {/* Icon for Inventory */}
               Inventory
             </button>
             <button
-              onClick={() => navigate("/store")}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                navigate("/store")
+              }}
               className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-200"
             >
               <ShoppingBag className="inline-block mr-2" size={16} /> {/* Icon for Store */}
               Store
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                handlePointSetting(points.points + 100)
+              }} // Example of setting points
+              className="bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-yellow-700 transition duration-200"
+            >
+              Add 100 Points
             </button>
           </div>
 
