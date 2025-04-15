@@ -26,6 +26,11 @@ export const suggestCategory = async (transactionData) => {
     const prompt = `
     You are an AI specializing in financial transaction analysis. Your task is to categorize a transaction based on the provided details.
 
+    Return only the category name as a string. Do not include any additional text or explanations.
+    format for the return should be like this:
+    {
+        "category": "category name",
+    }
     Transaction Details:
     - transactionID: {transactionID}
     - userID: {userID}
@@ -60,7 +65,7 @@ export const suggestCategory = async (transactionData) => {
     - Education & Learning
     - Home & Furniture
     - Gifts & Donations
-    - Miscellaneous Expenses (only if absolutely necessary)
+    - (Or any other specific category that fits the transaction)
 
     Important Rules:
     - Always pick the most relevant category based on transaction details.
@@ -78,7 +83,7 @@ export const suggestCategory = async (transactionData) => {
         });
 
         // Extract and clean the AI's response to get the category.
-        const category = response.choices[0].message.content?.trim() || "Miscellaneous Expenses";
+        const category = response.choices[0].message.content?.trim() || "[AI]: NO SUITABLE CATEGORY FOUND";
 
         console.log(`AI Category for ${transactionData.transactionID}: ${category}`);
 
