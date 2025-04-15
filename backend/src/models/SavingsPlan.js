@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Transactions} from "./Transaction.js"; // Import the Transactions model
 
 const SavingsPlanSchema = new mongoose.Schema({
     savingsPlanID: {type: String, required:true, unique:true},
