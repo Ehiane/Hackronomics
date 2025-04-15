@@ -214,7 +214,7 @@ const TransactionsPage = () => {
                     onChange={handleCsvUpload}
                     className="csv-input"
                     />
-                    <p className="csv-hint">Accepted format: transactionID, amountSpent, transactionType, transactionDate, category, description, merchantName, merchantType, Location:{"{city:..., state:...: zipcode:...}"}</p>
+                    <p className="csv-hint">Accepted format: transactionID, amountSpent, transactionType, transactionDate, category, description, merchantName, merchantType, Location.city, Location.state, Location.zipcode</p>
                     {csvMessage.text && (
                         <p className={`csv-message ${csvMessage.type}`}>
                             {csvMessage.text}
