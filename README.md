@@ -4,6 +4,9 @@
 # Hackronomics
 An award-winning AI-driven finance tracking web app that helps users monitor expenses, manage budgets, and discover cost-effective alternatives using AI recommendations. This project was built as part of the CrimsonCode Hackathon, aligning with the theme "Art in Innovation" by incorporating data visualization as digital art to represent spending habits.
 
+## Award Acceptance 
+![image](https://github.com/user-attachments/assets/12ceee38-e2aa-4cc6-8a1a-a2224156ea4f)
+
 ##  Explanation video
 https://github.com/user-attachments/assets/14b9bc74-91f9-4afe-94c9-17650b45b11b
 
