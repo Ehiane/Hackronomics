@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 import Dashboard from "./components/Dashboard";
-import Home from "./homePage/Home";
+import LandingPage from "./landing/LandingPage";
 import LoginPage from "./homePage/LoginPage";
 import Register from "./homePage/Register";
 import ProtectedRoute from "./ProtectedRoute"; // Import new component
@@ -26,7 +26,7 @@ const App = () => {
     <Router>
       <Routes>
         {/* Public routes */}
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<Register />} />
 
@@ -71,7 +71,7 @@ const App = () => {
           }
         />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 };
